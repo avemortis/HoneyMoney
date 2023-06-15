@@ -14,3 +14,13 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Vtorushin"
 include ':app'
+include ':feature:loan:detail'
+include ':feature:loan:history'
+include ':feature:login'
+include ':feature:pincode'
+include ':feature:profile'
+include ':feature:registration'
+include ':shared:auth'
+include ':shared:loan'
+include ':shared:setting'
+include ':utils:datetime'
