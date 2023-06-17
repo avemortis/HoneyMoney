@@ -9,7 +9,9 @@ class AuthRepositoryImpl(
     private val context: Context,
     private val authApi: AuthApi
 ) : AuthRepository {
-    override suspend fun generate(authBody: AuthBody) = authApi.login(authBody)
+    override suspend fun register(authBody: AuthBody) = authApi.register(authBody)
+
+    override suspend fun generateToken(authBody: AuthBody) = authApi.login(authBody)
 
     override fun get(): String? {
         val pref = context.getSharedPreferences(AUTH, Context.MODE_PRIVATE)
