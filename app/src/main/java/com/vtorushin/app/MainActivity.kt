@@ -1,4 +1,4 @@
-package com.vtorushin.vtorushin
+package com.vtorushin.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
