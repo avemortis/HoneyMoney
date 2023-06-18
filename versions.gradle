@@ -5,6 +5,7 @@ ext.versions = [
         'constraintLayout'  :   '2.1.4',
         'viewModel'         :   '2.6.1',
 
-
-        'retrofit'          :   '2.9.0'
+        'retrofit'          :   '2.9.0',
+        'dagger'            :   '2.45',
+        'cicerone'          :   '7.1'
 ]

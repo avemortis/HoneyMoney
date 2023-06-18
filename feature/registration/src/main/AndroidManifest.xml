@@ -1,1 +1,4 @@
-<manifest package="com.vtorushin.feature.registration" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.vtorushin.feature.registration">
+    <uses-permission android:name="android.permission.INTERNET"/>
+</manifest>

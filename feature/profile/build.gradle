@@ -32,4 +32,12 @@ android {
     }
 }
 
-dependencies {}
+dependencies {
+    implementation "androidx.core:core-ktx:${versions.core}"
+    implementation "androidx.appcompat:appcompat:${versions.appCompat}"
+    implementation "com.google.android.material:material:${versions.material}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.viewModel}"
+
+    implementation "com.github.terrakok:cicerone:${versions.cicerone}"
+}
