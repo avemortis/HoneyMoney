@@ -10,14 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.vtorushin.feature.registration.R
 import com.vtorushin.feature.registration.databinding.FragmentRegistrationBinding
-import com.vtorushin.feature.registration.di.registrationComponent
+import com.vtorushin.feature.registration.di.clearComponent
+import com.vtorushin.feature.registration.di.component
 import com.vtorushin.feature.registration.presentation.RegistrationError
 import com.vtorushin.feature.registration.presentation.RegistrationUiState
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 class RegistrationFragment : Fragment() {
-    private val viewModel by lazy { registrationComponent().viewModel() }
+    private val viewModel by lazy { component().viewModel() }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,21 +35,26 @@ class RegistrationFragment : Fragment() {
     private fun subscribe() {
         lifecycleScope.launch {
             viewModel.state.collect {
-                if (it is RegistrationUiState.Error) {
-                    when (it.error) {
-                        RegistrationError.USER_ALREADY_EXIST -> Toast.makeText(
-                            requireContext(),
-                            R.string.user_already_exist,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        RegistrationError.NETWORK_ERROR -> Toast.makeText(
-                            requireContext(),
-                            R.string.network_error,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                when (it) {
+                    is RegistrationUiState.Error -> when (it.error) {
+                        RegistrationError.USER_ALREADY_EXIST -> showToast(getString(R.string.user_already_exist))
+                        RegistrationError.NETWORK_ERROR -> showToast(getString(R.string.network_error))
                     }
+                    RegistrationUiState.Successes -> {
+                        clearComponent()
+                        showToast(getString(R.string.welcome))
+                    }
+                    RegistrationUiState.Init -> {}
                 }
             }
         }
+    }
+
+    private fun showToast(text: String) {
+        Toast.makeText(
+            requireContext(),
+            text,
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

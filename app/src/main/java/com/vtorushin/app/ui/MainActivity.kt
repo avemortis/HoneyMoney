@@ -15,7 +15,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        router.newRootScreen(getRegistrationScreen())
+        if (savedInstanceState == null)
+            router.newRootScreen(getRegistrationScreen())
     }
 
     override fun onResume() {

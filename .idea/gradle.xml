@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/feature/pincode" />
             <option value="$PROJECT_DIR$/feature/profile" />
             <option value="$PROJECT_DIR$/feature/registration" />
+            <option value="$PROJECT_DIR$/feature/setting" />
             <option value="$PROJECT_DIR$/shared" />
             <option value="$PROJECT_DIR$/shared/auth" />
             <option value="$PROJECT_DIR$/shared/loan" />

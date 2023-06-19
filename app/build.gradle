@@ -35,6 +35,8 @@ android {
 dependencies {
     implementation project(":feature:registration")
     implementation project(":feature:profile")
+    implementation project(":feature:setting")
+    implementation project(":shared:setting")
     implementation project(":shared:auth")
 
     implementation "androidx.core:core-ktx:${versions.core}"

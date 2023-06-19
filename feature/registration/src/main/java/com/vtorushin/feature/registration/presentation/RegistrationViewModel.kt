@@ -6,7 +6,9 @@ import com.vtorushin.shared.auth.domain.entity.AuthBody
 import com.vtorushin.shared.auth.domain.usecases.LoginUseCase
 import com.vtorushin.shared.auth.domain.usecases.RegisterUseCase
 import com.vtorushin.shared.auth.domain.usecases.SetTokenUseCase
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -21,8 +23,10 @@ class RegistrationViewModel(
     var login = String()
     var password = String()
 
-    private val _state: MutableStateFlow<RegistrationUiState> = MutableStateFlow(RegistrationUiState.Init)
-    val state = _state.asStateFlow()
+    private val _state: MutableSharedFlow<RegistrationUiState> = MutableSharedFlow(
+        replay = 0
+    )
+    val state = _state.asSharedFlow()
 
     fun register() {
         viewModelScope.launch {
