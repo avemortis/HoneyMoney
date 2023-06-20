@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/app/src/main/res/layout/activity_main.xml" value="0.2640625" />
+        <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/authoption/src/main/res/layout/fragment_auth_option.xml" value="0.20742753623188406" />
+        <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/login/src/main/res/layout/fragment_login.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/profile/src/main/res/layout/fragment_profile.xml" value="0.2786458333333333" />
         <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/registration/src/main/res/layout/fragment_registration.xml" value="0.2708333333333333" />
         <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/setting/src/main/res/layout/fragment_setting.xml" value="0.2630208333333333" />

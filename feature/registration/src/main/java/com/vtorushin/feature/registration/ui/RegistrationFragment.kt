@@ -18,17 +18,16 @@ import kotlinx.coroutines.launch
 
 class RegistrationFragment : Fragment() {
     private val viewModel by lazy { component().viewModel() }
+    private lateinit var binding: FragmentRegistrationBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentRegistrationBinding.inflate(inflater, container, false)
-        binding.loginEditText.setText(viewModel.login)
-        binding.passwordEditText.setText(viewModel.password)
+        binding = FragmentRegistrationBinding.inflate(inflater, container, false)
+        subscribe()
         binding.registrationButton.setOnClickListener { viewModel.register() }
         binding.loginEditText.doAfterTextChanged { text -> viewModel.login = text.toString() }
         binding.passwordEditText.doAfterTextChanged { text -> viewModel.password = text.toString() }
-        subscribe()
         return binding.root
     }
 
@@ -36,18 +35,38 @@ class RegistrationFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.state.collect {
                 when (it) {
-                    is RegistrationUiState.Error -> when (it.error) {
-                        RegistrationError.USER_ALREADY_EXIST -> showToast(getString(R.string.user_already_exist))
-                        RegistrationError.NETWORK_ERROR -> showToast(getString(R.string.network_error))
-                    }
-                    RegistrationUiState.Successes -> {
-                        clearComponent()
-                        showToast(getString(R.string.welcome))
-                    }
-                    RegistrationUiState.Init -> {}
+                    is RegistrationUiState.Error -> handleErrorState(it)
+                    RegistrationUiState.Successes -> handleSuccessesState()
+                    is RegistrationUiState.State -> drawState(it)
                 }
             }
         }
+    }
+    private fun handleErrorState(state: RegistrationUiState.Error) {
+        when (state.error) {
+            RegistrationError.USER_ALREADY_EXIST -> showToast(getString(R.string.user_already_exist))
+            RegistrationError.NETWORK_ERROR -> showToast(getString(R.string.network_error))
+            RegistrationError.LOGIN_EMPTY -> setErrorLoginEmpty()
+            RegistrationError.PASSWORD_EMPTY -> setErrorPasswordEmpty()
+        }
+    }
+
+    private fun setErrorLoginEmpty() {
+        binding.loginEditText.error = getString(R.string.cannot_be_empty)
+    }
+
+    private fun setErrorPasswordEmpty() {
+        binding.passwordEditText.error = getString(R.string.cannot_be_empty)
+    }
+
+    private fun handleSuccessesState() {
+        clearComponent()
+        showToast(getString(R.string.welcome))
+    }
+
+    private fun drawState(state: RegistrationUiState.State) {
+        binding.loginEditText.setText(state.login)
+        binding.passwordEditText.setText(state.password)
     }
 
     private fun showToast(text: String) {

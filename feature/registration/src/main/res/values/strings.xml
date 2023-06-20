@@ -6,4 +6,5 @@
     <string name="user_already_exist">User with this Login is already exist</string>
     <string name="network_error">Some kind of problems on a server. Please, try again later</string>
     <string name="welcome">Welcome!</string>
+    <string name="cannot_be_empty">The field cannot be empty</string>
 </resources>

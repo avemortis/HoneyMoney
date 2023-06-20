@@ -14,7 +14,8 @@ import dagger.assisted.AssistedInject
 @Suppress("UNCHECKED_CAST")
 class SettingViewModelFactory @AssistedInject constructor(
     @Assisted private val savedStateRegistryOwner: SavedStateRegistryOwner,
-    @Assisted private val settingsRepository: SettingsRepository
+    @Assisted private val settingsRepository: SettingsRepository,
+    @Assisted private val router: SettingRouter
 ) : AbstractSavedStateViewModelFactory(savedStateRegistryOwner, null) {
     override fun <T : ViewModel> create(
         key: String,
@@ -30,7 +31,8 @@ class SettingViewModelFactory @AssistedInject constructor(
                     GetNameUseCase(settingsRepository),
                     GetLastNameUseCase(settingsRepository),
                     GetLoginSecurityTypeUseCase(settingsRepository),
-                    ClearAllSettingsUseCase(settingsRepository)
+                    ClearAllSettingsUseCase(settingsRepository),
+                    router
                 ) as T
             else -> throw IllegalStateException("Unknown viewModel")
         }
@@ -40,7 +42,8 @@ class SettingViewModelFactory @AssistedInject constructor(
     interface Factory {
         fun create(
             savedStateRegistryOwner: SavedStateRegistryOwner,
-            repository: SettingsRepository
+            repository: SettingsRepository,
+            router: SettingRouter
         ): SettingViewModelFactory
     }
 }

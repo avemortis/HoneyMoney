@@ -11,6 +11,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.vtorushin.feature.setting.R
 import com.vtorushin.feature.setting.databinding.FragmentSettingBinding
+import com.vtorushin.feature.setting.di.clearComponent
 import com.vtorushin.feature.setting.di.component
 import com.vtorushin.feature.setting.presentation.SettingUiState
 import kotlinx.coroutines.launch
@@ -36,14 +37,7 @@ class SettingFragment : Fragment() {
     ): View {
         binding = FragmentSettingBinding.inflate(inflater, container, false)
         lifecycleScope.launch {
-            viewModel.state.collect {
-                when (it) {
-                    SettingUiState.LastNameIsEmpty -> setErrorToLastName()
-                    SettingUiState.NameIsEmpty -> setErrorToName()
-                    is SettingUiState.SettingsState -> setState(it)
-                    SettingUiState.Successes -> {}
-                }
-            }
+            viewModel.state.collect(this@SettingFragment::handleState)
         }
         binding.nameEditText.doAfterTextChanged { text -> viewModel.name = text.toString() }
         binding.lastNameEditText.doAfterTextChanged { text -> viewModel.lastName = text.toString() }
@@ -52,6 +46,15 @@ class SettingFragment : Fragment() {
         }
         binding.saveSettingsButton.setOnClickListener { viewModel.saveSettings() }
         return binding.root
+    }
+
+    private fun handleState(state: SettingUiState) {
+        when (state) {
+            SettingUiState.LastNameIsEmpty -> setErrorToLastName()
+            SettingUiState.NameIsEmpty -> setErrorToName()
+            is SettingUiState.SettingsState -> setState(state)
+            SettingUiState.Successes -> clearComponent()
+        }
     }
 
     private fun setErrorToName() {

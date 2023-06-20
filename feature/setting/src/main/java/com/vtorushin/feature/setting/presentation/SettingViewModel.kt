@@ -17,7 +17,8 @@ class SettingViewModel @Inject constructor(
     getNameUseCase: GetNameUseCase,
     getLastNameUseCase: GetLastNameUseCase,
     getLoginSecurityTypeUseCase: GetLoginSecurityTypeUseCase,
-    private val clearAllSettingsUseCase: ClearAllSettingsUseCase
+    private val clearAllSettingsUseCase: ClearAllSettingsUseCase,
+    private val router: SettingRouter
 ) : ViewModel() {
     var name = getNameUseCase()
     var lastName = getLastNameUseCase()
@@ -46,6 +47,7 @@ class SettingViewModel @Inject constructor(
                 setNameUseCase(name)
                 setLastNameUseCase(lastName)
                 setLoginSecurityTypeUseCase(loginSecurityType)
+                router.showProfile()
             }
         }
     }

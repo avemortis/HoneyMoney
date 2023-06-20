@@ -33,7 +33,9 @@ android {
 }
 
 dependencies {
+    implementation project(":feature:authoption")
     implementation project(":feature:registration")
+    implementation project(":feature:login")
     implementation project(":feature:profile")
     implementation project(":feature:setting")
     implementation project(":shared:setting")

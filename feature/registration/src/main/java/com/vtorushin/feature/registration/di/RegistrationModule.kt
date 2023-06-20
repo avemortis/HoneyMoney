@@ -8,7 +8,9 @@ import com.vtorushin.feature.registration.presentation.RegistrationViewModel
 import com.vtorushin.feature.registration.presentation.RegistrationViewModelFactory
 import com.vtorushin.shared.auth.data.remote.AuthApi
 import com.vtorushin.shared.auth.data.repository.AuthRepositoryImpl
+import com.vtorushin.shared.auth.data.repository.TokenRepositoryImpl
 import com.vtorushin.shared.auth.domain.repository.AuthRepository
+import com.vtorushin.shared.auth.domain.repository.TokenRepository
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -34,18 +36,20 @@ class RegistrationModule {
     }
 
     @Provides
-    fun bindAuthRepository(context: Context, api: AuthApi) : AuthRepository = AuthRepositoryImpl(context, api)
+    fun provideAuthRepository(api: AuthApi) : AuthRepository = AuthRepositoryImpl(api)
 
     @Provides
     @RegistrationScope
     fun provideViewModel(
         savedStateRegistryOwner: SavedStateRegistryOwner,
-        repository: AuthRepository,
+        authRepository: AuthRepository,
+        tokenRepository: TokenRepository,
         router: RegistrationRouter
     ): RegistrationViewModel {
         return RegistrationViewModelFactory(
             savedStateRegistryOwner,
-            repository,
+            authRepository,
+            tokenRepository,
             router
         ).create(RegistrationViewModel::class.java)
     }

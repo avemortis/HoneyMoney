@@ -32,4 +32,20 @@ android {
     }
 }
 
-dependencies {}
+dependencies {
+    implementation project(":shared:auth")
+
+    implementation "androidx.core:core-ktx:${versions.core}"
+    implementation "androidx.appcompat:appcompat:${versions.appCompat}"
+    implementation "com.google.android.material:material:${versions.material}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.viewModel}"
+
+    implementation("com.squareup.retrofit2:retrofit:${versions.retrofit}")
+    implementation("com.squareup.retrofit2:converter-gson:${versions.retrofit}")
+    implementation("com.squareup.retrofit2:converter-scalars:${versions.retrofit}")
+
+    implementation "com.github.terrakok:cicerone:${versions.cicerone}"
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+}

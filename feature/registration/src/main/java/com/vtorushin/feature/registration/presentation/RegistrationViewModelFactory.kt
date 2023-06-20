@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import com.vtorushin.shared.auth.domain.repository.AuthRepository
+import com.vtorushin.shared.auth.domain.repository.TokenRepository
 import com.vtorushin.shared.auth.domain.usecases.LoginUseCase
 import com.vtorushin.shared.auth.domain.usecases.RegisterUseCase
 import com.vtorushin.shared.auth.domain.usecases.SetTokenUseCase
@@ -16,6 +17,7 @@ import dagger.assisted.AssistedInject
 class RegistrationViewModelFactory @AssistedInject constructor(
     @Assisted private val savedStateRegistryOwner: SavedStateRegistryOwner,
     @Assisted private val authRepository: AuthRepository,
+    @Assisted private val tokenRepository: TokenRepository,
     @Assisted private val router: RegistrationRouter
 ) : AbstractSavedStateViewModelFactory(savedStateRegistryOwner, null) {
     override fun <T : ViewModel> create(
@@ -28,7 +30,7 @@ class RegistrationViewModelFactory @AssistedInject constructor(
                 RegistrationViewModel(
                     RegisterUseCase(authRepository),
                     LoginUseCase(authRepository),
-                    SetTokenUseCase(authRepository),
+                    SetTokenUseCase(tokenRepository),
                     router
                 ) as T
             else -> throw IllegalStateException("Unknown viewModel")
@@ -40,6 +42,7 @@ class RegistrationViewModelFactory @AssistedInject constructor(
         fun create(
             savedStateRegistryOwner: SavedStateRegistryOwner,
             repository: AuthRepository,
+            tokenRepository: TokenRepository,
             router: RegistrationRouter
         ): RegistrationViewModelFactory
     }

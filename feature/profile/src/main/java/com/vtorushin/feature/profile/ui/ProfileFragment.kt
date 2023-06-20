@@ -1,4 +1,4 @@
-package com.vtorushin.feature.profile.presentation
+package com.vtorushin.feature.profile.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

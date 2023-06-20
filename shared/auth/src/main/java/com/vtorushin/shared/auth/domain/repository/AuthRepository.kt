@@ -6,6 +6,4 @@ import com.vtorushin.shared.auth.domain.entity.User
 interface AuthRepository {
     suspend fun register(authBody: AuthBody): User
     suspend fun generateToken(authBody: AuthBody): String
-    fun get(): String?
-    fun set(auth: String)
 }
