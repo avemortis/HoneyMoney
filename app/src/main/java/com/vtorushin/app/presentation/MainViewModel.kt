@@ -2,6 +2,7 @@ package com.vtorushin.app.presentation
 
 import androidx.lifecycle.ViewModel
 import com.github.terrakok.cicerone.Screen
+import com.vtorushin.component.tab.getTabScreen
 import com.vtorushin.feature.authoption.getAuthOptionScreen
 import com.vtorushin.feature.profile.getProfileScreen
 import com.vtorushin.feature.setting.getSettingScreen
@@ -19,7 +20,7 @@ class MainViewModel @Inject constructor(
     private val getLoginSecurityTypeUseCase: GetLoginSecurityTypeUseCase,
     private val getTokenUseCase: GetTokenUseCase
 ) : ViewModel() {
-    fun getStartScreen() : Screen {
+    fun getStartScreen(): Screen {
         val token = getTokenUseCase()
         val name = getNameUseCase()
         val lastName = getLastNameUseCase()
@@ -28,7 +29,7 @@ class MainViewModel @Inject constructor(
             token.isNullOrEmpty() -> getAuthOptionScreen()
             name.isBlank() || lastName.isBlank() -> getSettingScreen(SettingLaunchMode.WITHOUT_SETTINGS_CLEARING)
             loginSecurityType == LoginSecurityType.LOGIN_PASSWORD -> getAuthOptionScreen()
-            loginSecurityType == LoginSecurityType.NO_SECURITY -> getProfileScreen()
+            loginSecurityType == LoginSecurityType.NO_SECURITY -> getTabScreen()
             else -> throw IllegalStateException("Wrong start screen state")
         }
     }

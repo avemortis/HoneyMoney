@@ -32,4 +32,10 @@ android {
     }
 }
 
-dependencies {}
+dependencies {
+    implementation("com.squareup.retrofit2:retrofit:${versions.retrofit}")
+    implementation("com.squareup.retrofit2:converter-gson:${versions.retrofit}")
+
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+}

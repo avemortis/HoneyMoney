@@ -6,4 +6,5 @@
     <string name="remember_me">Remember me</string>
     <string name="save_settings">Save settings</string>
     <string name="cannot_be_empty">The field cannot be empty</string>
+    <string name="phone_number">Phone number</string>
 </resources>

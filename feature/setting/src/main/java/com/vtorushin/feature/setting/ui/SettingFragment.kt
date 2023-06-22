@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.vtorushin.feature.setting.R
@@ -41,6 +39,7 @@ class SettingFragment : Fragment() {
         }
         binding.nameEditText.doAfterTextChanged { text -> viewModel.name = text.toString() }
         binding.lastNameEditText.doAfterTextChanged { text -> viewModel.lastName = text.toString() }
+        binding.phoneNumberEditText.doAfterTextChanged { text -> viewModel.phoneNumber = text.toString() }
         binding.rememberMeCheckbox.setOnCheckedChangeListener { _, to ->
             viewModel.onRememberMeChanged(to)
         }
@@ -52,6 +51,7 @@ class SettingFragment : Fragment() {
         when (state) {
             SettingUiState.LastNameIsEmpty -> setErrorToLastName()
             SettingUiState.NameIsEmpty -> setErrorToName()
+            SettingUiState.PhoneNumberIsEmpty -> setErrorToPhoneNumber()
             is SettingUiState.SettingsState -> setState(state)
             SettingUiState.Successes -> clearComponent()
         }
@@ -63,6 +63,10 @@ class SettingFragment : Fragment() {
 
     private fun setErrorToLastName() {
         binding.lastNameEditText.error = getString(R.string.cannot_be_empty)
+    }
+
+    private fun setErrorToPhoneNumber() {
+        binding.phoneNumberEditText.error = getString(R.string.cannot_be_empty)
     }
 
     private fun setState(state: SettingUiState.SettingsState) {

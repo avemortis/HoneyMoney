@@ -3,10 +3,8 @@ package com.vtorushin.app.di
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
-import com.vtorushin.app.presentation.navigation.AuthOptionRouterImpl
-import com.vtorushin.app.presentation.navigation.LoginRouterImpl
-import com.vtorushin.app.presentation.navigation.RegistrationRouterImpl
-import com.vtorushin.app.presentation.navigation.SettingRouterImpl
+import com.vtorushin.app.presentation.navigation.*
+import com.vtorushin.component.tab.presentation.TabsScreenProvider
 import com.vtorushin.feature.authoption.presentation.AuthOptionRouter
 import com.vtorushin.feature.login.presentation.LoginRouter
 import com.vtorushin.feature.registration.presentation.RegistrationRouter
@@ -45,4 +43,9 @@ class NavigationModule {
     @Singleton
     fun provideNavigatorHolder(cicerone: Cicerone<Router>): NavigatorHolder =
         cicerone.getNavigatorHolder()
+
+    @Provides
+    @Singleton
+    fun provideTabsScreenProvider() : TabsScreenProvider =
+        TabsScreenProvideImpl()
 }

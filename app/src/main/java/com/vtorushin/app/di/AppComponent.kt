@@ -8,6 +8,8 @@ import com.github.terrakok.cicerone.Router
 import com.vtorushin.app.App
 import com.vtorushin.app.presentation.MainViewModel
 import com.vtorushin.app.ui.MainActivity
+import com.vtorushin.component.tab.di.TabsComponent
+import com.vtorushin.component.tab.di.TabsScope
 import com.vtorushin.feature.authoption.di.AuthOptionComponent
 import com.vtorushin.feature.authoption.di.AuthOptionScope
 import com.vtorushin.feature.login.di.LoginComponent
@@ -35,6 +37,8 @@ interface AppComponent {
     val loginComponentFactory: LoginComponent.Factory
     @AuthOptionScope
     val authOptionComponentFactory: AuthOptionComponent.Factory
+    @TabsScope
+    val tabsComponentFactory: TabsComponent.Factory
 
     @Component.Factory
     interface Factory {

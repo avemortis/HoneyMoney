@@ -6,6 +6,8 @@ import com.vtorushin.app.di.AppComponent
 import com.vtorushin.app.di.AppComponentOwner
 import com.vtorushin.app.di.DaggerAppComponent
 import com.vtorushin.app.ui.MainActivity
+import com.vtorushin.component.tab.di.TabsComponent
+import com.vtorushin.component.tab.di.TabsComponentOwner
 import com.vtorushin.feature.authoption.di.AuthOptionComponent
 import com.vtorushin.feature.authoption.di.AuthOptionComponentOwner
 import com.vtorushin.feature.login.di.LoginComponent
@@ -15,12 +17,14 @@ import com.vtorushin.feature.registration.di.RegistrationComponentOwner
 import com.vtorushin.feature.setting.di.SettingComponent
 import com.vtorushin.feature.setting.di.SettingComponentOwner
 
-class App : Application(), AppComponentOwner, RegistrationComponentOwner, SettingComponentOwner, LoginComponentOwner, AuthOptionComponentOwner {
+class App : Application(), AppComponentOwner, RegistrationComponentOwner, SettingComponentOwner,
+    LoginComponentOwner, AuthOptionComponentOwner, TabsComponentOwner {
     private var appComponent: AppComponent? = null
     private var registrationComponent: RegistrationComponent? = null
     private var settingComponent: SettingComponent? = null
     private var loginComponent: LoginComponent? = null
     private var authOptionComponent: AuthOptionComponent? = null
+    private var tabsComponent: TabsComponent? = null
 
     override fun addAppComponent(activity: MainActivity): AppComponent {
         if (appComponent == null)
@@ -94,5 +98,19 @@ class App : Application(), AppComponentOwner, RegistrationComponentOwner, Settin
         authOptionComponent = null
     }
 
+    override fun addTabsComponent(savedStateRegistryOwner: SavedStateRegistryOwner): TabsComponent {
+        appComponent?.let {
+            if (tabsComponent == null) {
+                tabsComponent = it.tabsComponentFactory.create(
+                    savedStateRegistryOwner
+                )
+            }
+        }
 
+        return tabsComponent!!
+    }
+
+    override fun clearTabsComponent() {
+        tabsComponent = null
+    }
 }

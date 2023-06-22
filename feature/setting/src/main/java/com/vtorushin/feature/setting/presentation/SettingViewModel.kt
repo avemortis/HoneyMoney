@@ -13,15 +13,18 @@ import javax.inject.Inject
 class SettingViewModel @Inject constructor(
     private val setNameUseCase: SetNameUseCase,
     private val setLastNameUseCase: SetLastNameUseCase,
+    private val setPhoneNumberUseCase: SetPhoneNumberUseCase,
     private val setLoginSecurityTypeUseCase: SetLoginSecurityTypeUseCase,
     getNameUseCase: GetNameUseCase,
     getLastNameUseCase: GetLastNameUseCase,
+    getPhoneNumberUseCase: GetPhoneNumberUseCase,
     getLoginSecurityTypeUseCase: GetLoginSecurityTypeUseCase,
     private val clearAllSettingsUseCase: ClearAllSettingsUseCase,
     private val router: SettingRouter
 ) : ViewModel() {
     var name = getNameUseCase()
     var lastName = getLastNameUseCase()
+    var phoneNumber = getPhoneNumberUseCase()
     var loginSecurityType = getLoginSecurityTypeUseCase()
 
     private val _state = MutableSharedFlow<SettingUiState>(replay = 1).apply {
@@ -43,9 +46,12 @@ class SettingViewModel @Inject constructor(
                 _state.emit(SettingUiState.NameIsEmpty)
             if (lastName.isBlank())
                 _state.emit(SettingUiState.LastNameIsEmpty)
-            if (lastName.isNotBlank() && name.isNotBlank()) {
+            if (phoneNumber.isBlank())
+                _state.emit(SettingUiState.PhoneNumberIsEmpty)
+            if (lastName.isNotBlank() && name.isNotBlank() && phoneNumber.isNotBlank()) {
                 setNameUseCase(name)
                 setLastNameUseCase(lastName)
+                setPhoneNumberUseCase(phoneNumber)
                 setLoginSecurityTypeUseCase(loginSecurityType)
                 router.showProfile()
             }

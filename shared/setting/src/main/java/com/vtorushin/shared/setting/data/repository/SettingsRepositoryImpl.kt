@@ -20,6 +20,12 @@ class SettingsRepositoryImpl @Inject constructor(
         prefEdit.apply()
     }
 
+    override fun setPhoneNumber(number: String) {
+        val prefEdit = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE).edit()
+        prefEdit.putString(PHONE_KEY, number)
+        prefEdit.apply()
+    }
+
     override fun setLoginSecurityType(loginSecurityType: LoginSecurityType) {
         val prefEdit = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE).edit()
         prefEdit.putString(SECURITY_SETTING, loginSecurityType.name)
@@ -34,6 +40,11 @@ class SettingsRepositoryImpl @Inject constructor(
     override fun getLastName(): String {
         val pref = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
         return pref.getString(LAST_NAME_KEY, null)?: String()
+    }
+
+    override fun getPhoneNumber(): String {
+        val pref = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
+        return pref.getString(PHONE_KEY, null)?: String()
     }
 
     override fun getLoginSecurityType(): LoginSecurityType {
@@ -56,6 +67,7 @@ class SettingsRepositoryImpl @Inject constructor(
         private const val PREF_KEY = "SharedPref Key"
         private const val NAME_KEY = "Name Key"
         private const val LAST_NAME_KEY = "Last Name Key"
+        private const val PHONE_KEY = "Phone Key"
         private const val SECURITY_SETTING = "Security Setting"
     }
 }

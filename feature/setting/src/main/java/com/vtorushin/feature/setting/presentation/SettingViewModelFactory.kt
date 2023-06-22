@@ -27,9 +27,11 @@ class SettingViewModelFactory @AssistedInject constructor(
                 SettingViewModel(
                     SetNameUseCase(settingsRepository),
                     SetLastNameUseCase(settingsRepository),
+                    SetPhoneNumberUseCase(settingsRepository),
                     SetLoginSecurityTypeUseCase(settingsRepository),
                     GetNameUseCase(settingsRepository),
                     GetLastNameUseCase(settingsRepository),
+                    GetPhoneNumberUseCase(settingsRepository),
                     GetLoginSecurityTypeUseCase(settingsRepository),
                     ClearAllSettingsUseCase(settingsRepository),
                     router
