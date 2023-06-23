@@ -8,10 +8,10 @@ import com.vtorushin.feature.registration.getRegistrationScreen
 
 class TabsScreenProvideImpl: TabsScreenProvider {
     override fun getFirstScreen(): FragmentScreen {
-        return getRegistrationScreen()
+        return getProfileScreen()
     }
 
     override fun getSecondScreen(): FragmentScreen {
-        return getLoginScreen()
+        return getProfileScreen()
     }
 }

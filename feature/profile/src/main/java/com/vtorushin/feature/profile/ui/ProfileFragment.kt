@@ -17,6 +17,9 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentProfileBinding.inflate(inflater, container, false)
+        binding.button.setOnClickListener {
+            viewModel.edit()
+        }
         return binding.root
     }
 }

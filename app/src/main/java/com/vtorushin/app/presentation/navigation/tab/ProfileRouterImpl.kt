@@ -10,8 +10,4 @@ class ProfileRouterImpl(private val router: Router) : ProfileRouter {
     override fun editProfile() {
         router.navigateTo(getSettingScreen(SettingLaunchMode.WITHOUT_SETTINGS_CLEARING))
     }
-
-    init {
-        Log.d("Router" ,"from impl $router")
-    }
 }
