@@ -1,8 +1,9 @@
-package com.vtorushin.app.di
+package com.vtorushin.app.di.navigation
 
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
+import com.vtorushin.app.di.navigation.MainRouterLevel
 import com.vtorushin.app.presentation.navigation.*
 import com.vtorushin.component.tab.presentation.TabsScreenProvider
 import com.vtorushin.feature.authoption.presentation.AuthOptionRouter
@@ -17,35 +18,41 @@ import javax.inject.Singleton
 class NavigationModule {
     @Provides
     @Singleton
-    fun provideRegistrationRouter(router: Router): RegistrationRouter = RegistrationRouterImpl(router)
+    fun provideRegistrationRouter(@MainRouterLevel router: Router): RegistrationRouter =
+        RegistrationRouterImpl(router)
 
     @Provides
     @Singleton
-    fun provideSettingRouter(router: Router): SettingRouter = SettingRouterImpl(router)
+    fun provideSettingRouter(@MainRouterLevel router: Router): SettingRouter =
+        SettingRouterImpl(router)
 
     @Provides
     @Singleton
-    fun provideLoginRouter(router: Router): LoginRouter = LoginRouterImpl(router)
+    fun provideLoginRouter(@MainRouterLevel router: Router): LoginRouter = LoginRouterImpl(router)
 
     @Provides
     @Singleton
-    fun provideAuthOptionRouter(router: Router): AuthOptionRouter = AuthOptionRouterImpl(router)
+
+    fun provideAuthOptionRouter(@MainRouterLevel router: Router): AuthOptionRouter =
+        AuthOptionRouterImpl(router)
 
     @Provides
     @Singleton
+    @MainRouterLevel
     fun provideCicerone(): Cicerone<Router> = Cicerone.create()
 
     @Provides
     @Singleton
-    fun provideRouter(cicerone: Cicerone<Router>): Router = cicerone.router
+    @MainRouterLevel
+    fun provideRouter(@MainRouterLevel cicerone: Cicerone<Router>): Router = cicerone.router
 
     @Provides
     @Singleton
-    fun provideNavigatorHolder(cicerone: Cicerone<Router>): NavigatorHolder =
+    fun provideNavigatorHolder(@MainRouterLevel cicerone: Cicerone<Router>): NavigatorHolder =
         cicerone.getNavigatorHolder()
 
     @Provides
     @Singleton
-    fun provideTabsScreenProvider() : TabsScreenProvider =
+    fun provideTabsScreenProvider(): TabsScreenProvider =
         TabsScreenProvideImpl()
 }

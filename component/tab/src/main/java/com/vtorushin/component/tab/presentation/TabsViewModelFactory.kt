@@ -19,8 +19,8 @@ class TabsViewModelFactory @AssistedInject constructor(
         handle: SavedStateHandle
     ): T {
         return when (modelClass) {
-            TabsViewModel::class.java ->
-                TabsViewModel(
+            ContentTabViewModel::class.java ->
+                ContentTabViewModel(
                     provider
                 ) as T
             else -> throw IllegalStateException("Unknown viewModel")

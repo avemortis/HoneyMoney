@@ -5,8 +5,6 @@ import android.os.Bundle
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.vtorushin.app.R
 import com.vtorushin.app.di.component
-import com.vtorushin.feature.authoption.getAuthOptionScreen
-import com.vtorushin.feature.registration.getRegistrationScreen
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by lazy { component().viewModel() }

@@ -2,14 +2,14 @@ package com.vtorushin.component.tab.di
 
 import androidx.fragment.app.Fragment
 import androidx.savedstate.SavedStateRegistryOwner
-import com.vtorushin.component.tab.presentation.TabsViewModel
+import com.vtorushin.component.tab.presentation.ContentTabViewModel
 import dagger.BindsInstance
 import dagger.Subcomponent
 
 @TabsScope
 @Subcomponent(modules = [TabsModule::class])
 interface TabsComponent {
-    fun viewModel(): TabsViewModel
+    fun viewModel(): ContentTabViewModel
 
     @Subcomponent.Factory
     interface Factory {

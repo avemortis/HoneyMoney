@@ -1,11 +1,11 @@
 package com.vtorushin.app.di
 
 import android.content.Context
-import androidx.savedstate.SavedStateRegistryOwner
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
-import com.vtorushin.app.App
+import com.vtorushin.app.di.navigation.MainRouterLevel
+import com.vtorushin.app.di.navigation.NavigationModule
 import com.vtorushin.app.presentation.MainViewModel
 import com.vtorushin.app.ui.MainActivity
 import com.vtorushin.component.tab.di.TabsComponent
@@ -25,7 +25,9 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [AppModule::class, NavigationModule::class])
 interface AppComponent {
+    @MainRouterLevel
     fun cicerone(): Cicerone<Router>
+    @MainRouterLevel
     fun router(): Router
     fun navigatorHolder(): NavigatorHolder
     fun viewModel(): MainViewModel
