@@ -51,8 +51,8 @@ class HostTabFragment : Fragment() {
     private fun listenBottomNavigation(binding: FragmentHostTabBinding) {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.loan -> viewModel.first(childFragmentManager)
-                R.id.profile -> viewModel.second(childFragmentManager)
+                R.id.profile -> viewModel.first(childFragmentManager)
+                R.id.loan -> viewModel.second(childFragmentManager)
                 else -> throw IllegalStateException("Unhandled navigation")
             }
             true

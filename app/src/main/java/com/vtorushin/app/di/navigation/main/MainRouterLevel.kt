@@ -1,4 +1,4 @@
-package com.vtorushin.app.di.navigation
+package com.vtorushin.app.di.navigation.main
 
 import javax.inject.Qualifier
 

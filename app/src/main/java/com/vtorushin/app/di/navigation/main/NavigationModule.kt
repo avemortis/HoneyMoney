@@ -1,10 +1,9 @@
-package com.vtorushin.app.di.navigation
+package com.vtorushin.app.di.navigation.main
 
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
-import com.vtorushin.app.di.navigation.MainRouterLevel
-import com.vtorushin.app.presentation.navigation.*
+import com.vtorushin.app.presentation.navigation.main.*
 import com.vtorushin.component.tab.presentation.TabsScreenProvider
 import com.vtorushin.feature.authoption.presentation.AuthOptionRouter
 import com.vtorushin.feature.login.presentation.LoginRouter
@@ -32,7 +31,6 @@ class NavigationModule {
 
     @Provides
     @Singleton
-
     fun provideAuthOptionRouter(@MainRouterLevel router: Router): AuthOptionRouter =
         AuthOptionRouterImpl(router)
 

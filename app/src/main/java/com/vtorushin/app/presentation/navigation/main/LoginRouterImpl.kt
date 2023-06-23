@@ -1,4 +1,4 @@
-package com.vtorushin.app.presentation.navigation
+package com.vtorushin.app.presentation.navigation.main
 
 import com.github.terrakok.cicerone.Router
 import com.vtorushin.component.tab.getTabScreen

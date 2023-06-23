@@ -9,5 +9,10 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val getNameUseCase: GetNameUseCase,
     private val getLastNameUseCase: GetLastNameUseCase,
-    private val getPhoneNumberUseCase: GetPhoneNumberUseCase
-) : ViewModel()
+    private val getPhoneNumberUseCase: GetPhoneNumberUseCase,
+    private val router: ProfileRouter
+) : ViewModel() {
+    fun edit() {
+        router.editProfile()
+    }
+}

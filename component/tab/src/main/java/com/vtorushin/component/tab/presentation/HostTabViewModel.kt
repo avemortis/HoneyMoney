@@ -8,7 +8,7 @@ import com.vtorushin.component.tab.FragmentKeys.SECOND_SCREEN
 import com.vtorushin.component.tab.ui.ContentTabFragment
 
 class HostTabViewModel : ViewModel() {
-    var unActive = FIRST_SCREEN
+    var unActive = SECOND_SCREEN
 
     val first = ContentTabFragment.newInstance(FIRST_SCREEN)
     val second = ContentTabFragment.newInstance(SECOND_SCREEN)

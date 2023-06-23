@@ -12,19 +12,22 @@ import com.vtorushin.feature.authoption.di.AuthOptionComponent
 import com.vtorushin.feature.authoption.di.AuthOptionComponentOwner
 import com.vtorushin.feature.login.di.LoginComponent
 import com.vtorushin.feature.login.di.LoginComponentOwner
+import com.vtorushin.feature.profile.di.ProfileComponent
+import com.vtorushin.feature.profile.di.ProfileComponentOwner
 import com.vtorushin.feature.registration.di.RegistrationComponent
 import com.vtorushin.feature.registration.di.RegistrationComponentOwner
 import com.vtorushin.feature.setting.di.SettingComponent
 import com.vtorushin.feature.setting.di.SettingComponentOwner
 
 class App : Application(), AppComponentOwner, RegistrationComponentOwner, SettingComponentOwner,
-    LoginComponentOwner, AuthOptionComponentOwner, TabsComponentOwner {
+    LoginComponentOwner, AuthOptionComponentOwner, TabsComponentOwner, ProfileComponentOwner {
     private var appComponent: AppComponent? = null
     private var registrationComponent: RegistrationComponent? = null
     private var settingComponent: SettingComponent? = null
     private var loginComponent: LoginComponent? = null
     private var authOptionComponent: AuthOptionComponent? = null
     private var tabsComponent: TabsComponent? = null
+    private var profileComponent: ProfileComponent? = null
 
     override fun addAppComponent(activity: MainActivity): AppComponent {
         if (appComponent == null)
@@ -112,5 +115,22 @@ class App : Application(), AppComponentOwner, RegistrationComponentOwner, Settin
 
     override fun clearTabsComponent() {
         tabsComponent = null
+    }
+
+    override fun addProfileComponent(savedStateRegistryOwner: SavedStateRegistryOwner): ProfileComponent {
+        appComponent?.let {
+            if (profileComponent == null) {
+                profileComponent = it.profileComponent.create(
+                    savedStateRegistryOwner,
+                    this
+                )
+            }
+        }
+
+        return profileComponent!!
+    }
+
+    override fun clearProfileComponent() {
+        profileComponent = null
     }
 }
