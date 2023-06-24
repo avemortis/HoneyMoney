@@ -64,8 +64,8 @@ class LoanDetailFragment : Fragment() {
         binding.id.text = getString(R.string.id, state.loan.id)
         binding.message.text = when (state.loan.state) {
             LoanStatusModel.APPROVED -> getString(R.string.approved_message)
-            LoanStatusModel.REGISTERED -> getString(R.string.approved_message)
-            LoanStatusModel.REJECTED -> getString(R.string.approved_message)
+            LoanStatusModel.REGISTERED -> getString(R.string.registered_message)
+            LoanStatusModel.REJECTED -> getString(R.string.reject_message)
         }
     }
 

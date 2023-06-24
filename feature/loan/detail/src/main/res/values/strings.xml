@@ -9,18 +9,23 @@
     <string name="phone_number">phone number:</string>
     <string name="id">identification number: %d</string>
     <string name="failed_to_connect">Failed to connect to the server. Please check back later</string>
-    <string name="some_long_text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget efficitur justo.
-        Integer aliquam, est nec iaculis pulvinar, neque nisi malesuada tortor, id porta eros odio non quam.
-        Pellentesque tincidunt urna ex, in facilisis purus volutpat a. Quisque accumsan ligula quam,
-        ac lobortis elit porttitor et. Aliquam erat volutpat. Integer at libero imperdiet, pellentesque nisl a,
-        placerat velit. Morbi feugiat malesuada nibh, a fringilla nisi. Proin in eros a nisi efficitur malesuada vitae a sapien.
-        Curabitur posuere orci sit amet dui sodales porta. Proin commodo ut arcu sit amet imperdiet. Fusce ante neque, egestas eu enim at,
-        auctor pulvinar lectus.</string>
     <string name="approved_message">
         Your application has been reviewed and approved by the system. You can get a loan at the nearest bank branch.\n
         To do this, provide the bank employee with the loan identification number (listed below) and your passport details.\n
-        If you have any questions regarding the operation of the service or the procedure for obtaining a loan, please contact:\n
-            Number: +8 800 555 35-35\n
-            Or write to the mail: homemoney@mail.ru
+        If you have any questions regarding the operation of the service or the procedure for obtaining a loan, please contact:\n\u0020•
+        Number: +8 800 555 35-35\n\u0020•
+        Email: homemoney@mail.ru
+    </string>
+    <string name="registered_message">
+        Your application has been accepted and is currently being processed by the system. You will receive a decision on your application shortly.\n
+        If you have any questions regarding the operation of the service or the procedure for obtaining a loan, please contact:\n\u0020•
+        Number: +8 800 555 35-35\n\u0020•
+        Email: homemoney@mail.ru
+    </string>
+    <string name="reject_message">
+        Your application has been rejected. We apologize for the inconvenience caused.\n
+        If you have any questions regarding the operation of the service or the procedure for obtaining a loan, please contact:\n\u0020•
+        Number: +8 800 555 35-35\n\u0020•
+        Email: homemoney@mail.ru
     </string>
 </resources>
