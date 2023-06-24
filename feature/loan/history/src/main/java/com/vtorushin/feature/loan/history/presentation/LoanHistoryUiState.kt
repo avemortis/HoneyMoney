@@ -5,6 +5,6 @@ import com.vtorushin.shared.loan.domain.entity.Loan
 interface LoanHistoryUiState {
     object Loading : LoanHistoryUiState
     object EmptyList : LoanHistoryUiState
-    data class Content(private val loans: List<Loan>)
-    data class Error(private val errorText: String)
+    data class Content(val loans: List<Loan>) : LoanHistoryUiState
+    data class Error(val errorText: String) : LoanHistoryUiState
 }

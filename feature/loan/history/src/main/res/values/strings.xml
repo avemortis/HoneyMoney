@@ -4,4 +4,5 @@
     <string name="loan_date">loan date:</string>
     <string name="amount">amount:</string>
     <string name="percent">percent:</string>
+    <string name="you_have_not_taken_any_loans">You have not taken any loans yet. Please click the buttons at the bottom of the screen if you wish to do so.</string>
 </resources>

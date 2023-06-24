@@ -10,6 +10,8 @@ import com.vtorushin.component.tab.di.TabsComponent
 import com.vtorushin.component.tab.di.TabsComponentOwner
 import com.vtorushin.feature.authoption.di.AuthOptionComponent
 import com.vtorushin.feature.authoption.di.AuthOptionComponentOwner
+import com.vtorushin.feature.loan.history.di.LoanHistoryComponent
+import com.vtorushin.feature.loan.history.di.LoanHistoryComponentOwner
 import com.vtorushin.feature.login.di.LoginComponent
 import com.vtorushin.feature.login.di.LoginComponentOwner
 import com.vtorushin.feature.profile.di.ProfileComponent
@@ -20,7 +22,8 @@ import com.vtorushin.feature.setting.di.SettingComponent
 import com.vtorushin.feature.setting.di.SettingComponentOwner
 
 class App : Application(), AppComponentOwner, RegistrationComponentOwner, SettingComponentOwner,
-    LoginComponentOwner, AuthOptionComponentOwner, TabsComponentOwner, ProfileComponentOwner {
+    LoginComponentOwner, AuthOptionComponentOwner, TabsComponentOwner, ProfileComponentOwner,
+    LoanHistoryComponentOwner {
     private var appComponent: AppComponent? = null
     private var registrationComponent: RegistrationComponent? = null
     private var settingComponent: SettingComponent? = null
@@ -28,6 +31,7 @@ class App : Application(), AppComponentOwner, RegistrationComponentOwner, Settin
     private var authOptionComponent: AuthOptionComponent? = null
     private var tabsComponent: TabsComponent? = null
     private var profileComponent: ProfileComponent? = null
+    private var loanHistoryComponent: LoanHistoryComponent? = null
 
     override fun addAppComponent(activity: MainActivity): AppComponent {
         if (appComponent == null)
@@ -132,5 +136,22 @@ class App : Application(), AppComponentOwner, RegistrationComponentOwner, Settin
 
     override fun clearProfileComponent() {
         profileComponent = null
+    }
+
+    override fun addLoanHistoryComponent(savedStateRegistryOwner: SavedStateRegistryOwner): LoanHistoryComponent {
+        appComponent?.let {
+            if (loanHistoryComponent == null) {
+                loanHistoryComponent = it.loanHistoryComponent.create(
+                    savedStateRegistryOwner,
+                    this
+                )
+            }
+        }
+
+        return loanHistoryComponent!!
+    }
+
+    override fun clearLoanHistoryComponent() {
+        loanHistoryComponent = null
     }
 }

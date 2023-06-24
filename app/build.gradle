@@ -40,9 +40,11 @@ dependencies {
     implementation project(":feature:registration")
     implementation project(":feature:login")
     implementation project(":feature:profile")
+    implementation project(":feature:loan:history")
     implementation project(":feature:setting")
     implementation project(":shared:setting")
     implementation project(":shared:auth")
+    implementation project(":shared:loan")
     implementation project(":component:tab")
 
     implementation "androidx.core:core-ktx:${versions.core}"

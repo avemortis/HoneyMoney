@@ -26,8 +26,10 @@ class MainViewModel @Inject constructor(
         val lastName = getLastNameUseCase()
         val loginSecurityType = getLoginSecurityTypeUseCase()
         return when {
-            token.isNullOrEmpty() -> getAuthOptionScreen()
-            name.isBlank() || lastName.isBlank() -> getSettingScreen(SettingLaunchMode.WITHOUT_SETTINGS_CLEARING)
+            token.isNullOrEmpty() ->
+                getAuthOptionScreen()
+            name.isBlank() || lastName.isBlank() ->
+                getSettingScreen(SettingLaunchMode.WITHOUT_SETTINGS_CLEARING)
             loginSecurityType == LoginSecurityType.LOGIN_PASSWORD -> getAuthOptionScreen()
             loginSecurityType == LoginSecurityType.NO_SECURITY -> getTabScreen()
             else -> throw IllegalStateException("Wrong start screen state")

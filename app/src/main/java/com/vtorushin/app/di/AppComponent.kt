@@ -13,6 +13,8 @@ import com.vtorushin.component.tab.di.TabsComponent
 import com.vtorushin.component.tab.di.TabsScope
 import com.vtorushin.feature.authoption.di.AuthOptionComponent
 import com.vtorushin.feature.authoption.di.AuthOptionScope
+import com.vtorushin.feature.loan.history.di.LoanHistoryComponent
+import com.vtorushin.feature.loan.history.di.LoanHistoryScope
 import com.vtorushin.feature.login.di.LoginComponent
 import com.vtorushin.feature.login.di.LoginScope
 import com.vtorushin.feature.profile.di.ProfileComponent
@@ -52,6 +54,9 @@ interface AppComponent {
 
     @ProfileScope
     val profileComponent: ProfileComponent.Factory
+
+    @LoanHistoryScope
+    val loanHistoryComponent: LoanHistoryComponent.Factory
 
     @Component.Factory
     interface Factory {

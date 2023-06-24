@@ -2,6 +2,7 @@ package com.vtorushin.shared.loan.data.remote.dtos
 
 import com.google.gson.annotations.SerializedName
 import com.vtorushin.shared.loan.domain.entity.Loan
+import com.vtorushin.shared.loan.domain.entity.LoanStatusModel
 import com.vtorushin.shared.loan.utils.DataMapper
 
 data class LoanDto(
@@ -16,8 +17,8 @@ data class LoanDto(
     @SerializedName("state") val state: String
 ) : DataMapper<Loan> {
     override fun mapToDomain() =
-        Loan(amount, date, firstName, id, lastName, percent, period, phoneNumber, state)
+        Loan(amount, date, firstName, id, lastName, percent, period, phoneNumber, LoanStatusModel.valueOf(state))
 }
 
 fun Loan.toDto() =
-    LoanDto(amount, date, firstName, id, lastName, percent, period, phoneNumber, state)
+    LoanDto(amount, date, firstName, id, lastName, percent, period, phoneNumber, state.name)
