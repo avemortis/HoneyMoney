@@ -10,6 +10,9 @@ import com.vtorushin.component.tab.di.TabsComponent
 import com.vtorushin.component.tab.di.TabsComponentOwner
 import com.vtorushin.feature.authoption.di.AuthOptionComponent
 import com.vtorushin.feature.authoption.di.AuthOptionComponentOwner
+import com.vtorushin.feature.loan.detail.di.LoanDetailComponent
+import com.vtorushin.feature.loan.detail.di.LoanDetailComponentOwner
+import com.vtorushin.feature.loan.di.LoanComponent
 import com.vtorushin.feature.loan.history.di.LoanHistoryComponent
 import com.vtorushin.feature.loan.history.di.LoanHistoryComponentOwner
 import com.vtorushin.feature.login.di.LoginComponent
@@ -20,10 +23,11 @@ import com.vtorushin.feature.registration.di.RegistrationComponent
 import com.vtorushin.feature.registration.di.RegistrationComponentOwner
 import com.vtorushin.feature.setting.di.SettingComponent
 import com.vtorushin.feature.setting.di.SettingComponentOwner
+import java.lang.RuntimeException
 
 class App : Application(), AppComponentOwner, RegistrationComponentOwner, SettingComponentOwner,
     LoginComponentOwner, AuthOptionComponentOwner, TabsComponentOwner, ProfileComponentOwner,
-    LoanHistoryComponentOwner {
+    LoanHistoryComponentOwner, LoanDetailComponentOwner {
     private var appComponent: AppComponent? = null
     private var registrationComponent: RegistrationComponent? = null
     private var settingComponent: SettingComponent? = null
@@ -32,10 +36,15 @@ class App : Application(), AppComponentOwner, RegistrationComponentOwner, Settin
     private var tabsComponent: TabsComponent? = null
     private var profileComponent: ProfileComponent? = null
     private var loanHistoryComponent: LoanHistoryComponent? = null
+    private var loanDetailComponent: LoanDetailComponent? = null
+    private val loanComponent by lazy {
+        appComponent?.loanComponent?.build() ?: throw RuntimeException("Illegal component state")
+    }
 
     override fun addAppComponent(activity: MainActivity): AppComponent {
         if (appComponent == null)
             appComponent = DaggerAppComponent.factory().create(this, activity)
+
         return appComponent!!
     }
 
@@ -143,6 +152,7 @@ class App : Application(), AppComponentOwner, RegistrationComponentOwner, Settin
             if (loanHistoryComponent == null) {
                 loanHistoryComponent = it.loanHistoryComponent.create(
                     savedStateRegistryOwner,
+                    loanComponent.provideLoanRepository(),
                     this
                 )
             }
@@ -153,5 +163,23 @@ class App : Application(), AppComponentOwner, RegistrationComponentOwner, Settin
 
     override fun clearLoanHistoryComponent() {
         loanHistoryComponent = null
+    }
+
+    override fun addLoanDetailComponent(savedStateRegistryOwner: SavedStateRegistryOwner): LoanDetailComponent {
+        appComponent?.let {
+            if (loanDetailComponent == null) {
+                loanDetailComponent = it.loanDetailComponent.create(
+                    savedStateRegistryOwner,
+                    loanComponent.provideLoanRepository(),
+                    this
+                )
+            }
+        }
+
+        return loanDetailComponent!!
+    }
+
+    override fun clearLoanDetailComponent() {
+        loanDetailComponent = null
     }
 }

@@ -1,17 +1,17 @@
-package com.vtorushin.feature.loan.history.di
+package com.vtorushin.feature.loan.detail.di
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.savedstate.SavedStateRegistryOwner
-import com.vtorushin.feature.loan.history.presentation.LoanHistoryViewModel
+import com.vtorushin.feature.loan.detail.presentation.LoanDetailViewModel
 import com.vtorushin.shared.loan.domain.repository.LoanRepository
 import dagger.BindsInstance
 import dagger.Subcomponent
 
-@LoanHistoryScope
-@Subcomponent(modules = [LoanHistoryModule::class])
-interface LoanHistoryComponent {
-    fun viewModel(): LoanHistoryViewModel
+@LoanDetailScope
+@Subcomponent(modules = [LoanDetailModule::class])
+interface LoanDetailComponent {
+    fun viewModel(): LoanDetailViewModel
 
     @Subcomponent.Factory
     interface Factory {
@@ -19,14 +19,14 @@ interface LoanHistoryComponent {
             @BindsInstance savedStateRegistryOwner: SavedStateRegistryOwner,
             @BindsInstance loanRepository: LoanRepository,
             @BindsInstance context: Context
-        ): LoanHistoryComponent
+        ): LoanDetailComponent
     }
 }
 
 internal fun Fragment.component() =
-    (requireContext().applicationContext as LoanHistoryComponentOwner)
-        .addLoanHistoryComponent(this)
+    (requireContext().applicationContext as LoanDetailComponentOwner)
+        .addLoanDetailComponent(this)
 
 internal fun Fragment.clearComponent() =
-    (requireContext().applicationContext as LoanHistoryComponentOwner)
-        .clearLoanHistoryComponent()
+    (requireContext().applicationContext as LoanDetailComponentOwner)
+        .clearLoanDetailComponent()

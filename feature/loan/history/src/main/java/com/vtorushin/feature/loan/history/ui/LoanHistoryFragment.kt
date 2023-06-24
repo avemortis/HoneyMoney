@@ -38,7 +38,7 @@ class LoanHistoryFragment : Fragment() {
                 when (it) {
                     LoanHistoryUiState.Loading -> loadingState()
                     LoanHistoryUiState.EmptyList -> emptyListState()
-                    is LoanHistoryUiState.Error -> errorState(it.errorText)
+                    LoanHistoryUiState.ServerError -> errorState(getString(R.string.failed_to_connect))
                     is LoanHistoryUiState.Content -> drawContent(it.loans)
                 }
             }

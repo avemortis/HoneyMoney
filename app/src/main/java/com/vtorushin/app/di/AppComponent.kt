@@ -6,13 +6,18 @@ import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.vtorushin.app.di.navigation.main.MainRouterLevel
 import com.vtorushin.app.di.navigation.main.NavigationModule
-import com.vtorushin.app.di.navigation.tabs.TabsNavigationModule
+import com.vtorushin.app.di.navigation.tabs.FirstTabNavigationModule
+import com.vtorushin.app.di.navigation.tabs.SecondTabNavigationModule
 import com.vtorushin.app.presentation.MainViewModel
 import com.vtorushin.app.ui.MainActivity
 import com.vtorushin.component.tab.di.TabsComponent
 import com.vtorushin.component.tab.di.TabsScope
 import com.vtorushin.feature.authoption.di.AuthOptionComponent
 import com.vtorushin.feature.authoption.di.AuthOptionScope
+import com.vtorushin.feature.loan.detail.di.LoanDetailComponent
+import com.vtorushin.feature.loan.detail.di.LoanDetailScope
+import com.vtorushin.feature.loan.di.LoanComponent
+import com.vtorushin.feature.loan.di.LoanScope
 import com.vtorushin.feature.loan.history.di.LoanHistoryComponent
 import com.vtorushin.feature.loan.history.di.LoanHistoryScope
 import com.vtorushin.feature.login.di.LoginComponent
@@ -28,10 +33,11 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class, NavigationModule::class, TabsNavigationModule::class])
+@Component(modules = [AppModule::class, NavigationModule::class, FirstTabNavigationModule::class, SecondTabNavigationModule::class])
 interface AppComponent {
     @MainRouterLevel
     fun cicerone(): Cicerone<Router>
+
     @MainRouterLevel
     fun router(): Router
     fun navigatorHolder(): NavigatorHolder
@@ -57,6 +63,12 @@ interface AppComponent {
 
     @LoanHistoryScope
     val loanHistoryComponent: LoanHistoryComponent.Factory
+
+    @LoanDetailScope
+    val loanDetailComponent: LoanDetailComponent.Factory
+
+    @LoanScope
+    val loanComponent: LoanComponent.Builder
 
     @Component.Factory
     interface Factory {

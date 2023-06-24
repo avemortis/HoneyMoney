@@ -4,6 +4,7 @@ import android.content.Context
 import com.vtorushin.app.presentation.MainViewModel
 import com.vtorushin.app.presentation.MainViewModelFactory
 import com.vtorushin.app.ui.MainActivity
+import com.vtorushin.feature.loan.di.LoanComponent
 import com.vtorushin.shared.auth.data.repository.TokenRepositoryImpl
 import com.vtorushin.shared.auth.domain.repository.TokenRepository
 import com.vtorushin.shared.setting.data.repository.SettingsRepositoryImpl

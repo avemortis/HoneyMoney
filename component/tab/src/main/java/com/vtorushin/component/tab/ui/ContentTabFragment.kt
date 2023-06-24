@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.vtorushin.component.tab.FragmentKeys.ARG_KEY
 import com.vtorushin.component.tab.FragmentKeys.FIRST_SCREEN

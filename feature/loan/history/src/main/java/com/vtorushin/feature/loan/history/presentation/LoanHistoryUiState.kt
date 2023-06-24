@@ -6,5 +6,5 @@ interface LoanHistoryUiState {
     object Loading : LoanHistoryUiState
     object EmptyList : LoanHistoryUiState
     data class Content(val loans: List<Loan>) : LoanHistoryUiState
-    data class Error(val errorText: String) : LoanHistoryUiState
+    object ServerError : LoanHistoryUiState
 }
