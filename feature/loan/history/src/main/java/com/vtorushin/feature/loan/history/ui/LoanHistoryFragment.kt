@@ -46,6 +46,7 @@ class LoanHistoryFragment : Fragment() {
     }
 
     private fun loadingState() {
+        binding.loansRecyclerView.visibility = View.INVISIBLE
         binding.centerText.visibility = View.INVISIBLE
         binding.loanHistoryProgressBar.visibility = View.VISIBLE
     }
@@ -64,6 +65,7 @@ class LoanHistoryFragment : Fragment() {
     }
 
     private fun drawContent(content: List<Loan>) {
+        binding.loansRecyclerView.visibility = View.VISIBLE
         binding.centerText.visibility = View.INVISIBLE
         binding.loanHistoryProgressBar.visibility = View.INVISIBLE
         val adapter = LoanHistoryAdapter(content) {

@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="back">Back</string>
+    <string name="loan_date">loan date:</string>
+    <string name="amount">amount:</string>
+    <string name="percent">percent:</string>
+    <string name="name">name:</string>
+    <string name="last_name">last name:</string>
+    <string name="phone_number">phone number:</string>
+    <string name="id">identification number: %d</string>
+    <string name="failed_to_connect">Failed to connect to the server. Please check back later</string>
+    <string name="some_long_text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget efficitur justo.
+        Integer aliquam, est nec iaculis pulvinar, neque nisi malesuada tortor, id porta eros odio non quam.
+        Pellentesque tincidunt urna ex, in facilisis purus volutpat a. Quisque accumsan ligula quam,
+        ac lobortis elit porttitor et. Aliquam erat volutpat. Integer at libero imperdiet, pellentesque nisl a,
+        placerat velit. Morbi feugiat malesuada nibh, a fringilla nisi. Proin in eros a nisi efficitur malesuada vitae a sapien.
+        Curabitur posuere orci sit amet dui sodales porta. Proin commodo ut arcu sit amet imperdiet. Fusce ante neque, egestas eu enim at,
+        auctor pulvinar lectus.</string>
+    <string name="approved_message">
+        Your application has been reviewed and approved by the system. You can get a loan at the nearest bank branch.\n
+        To do this, provide the bank employee with the loan identification number (listed below) and your passport details.\n
+        If you have any questions regarding the operation of the service or the procedure for obtaining a loan, please contact:\n
+            Number: +8 800 555 35-35\n
+            Or write to the mail: homemoney@mail.ru
+    </string>
 </resources>

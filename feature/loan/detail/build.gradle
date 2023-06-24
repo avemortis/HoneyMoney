@@ -36,6 +36,7 @@ dependencies {
     implementation project(":feature:loan")
     implementation project(":shared:loan")
     implementation project(":shared:auth")
+    implementation project(":utils:datetime")
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
 
