@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/feature/loan" />
             <option value="$PROJECT_DIR$/feature/loan/detail" />
             <option value="$PROJECT_DIR$/feature/loan/history" />
+            <option value="$PROJECT_DIR$/feature/loan/take" />
             <option value="$PROJECT_DIR$/feature/login" />
             <option value="$PROJECT_DIR$/feature/pincode" />
             <option value="$PROJECT_DIR$/feature/profile" />
