@@ -7,12 +7,12 @@ import com.vtorushin.shared.setting.domain.usecases.GetPhoneNumberUseCase
 import javax.inject.Inject
 
 class ProfileViewModel @Inject constructor(
-    private val getNameUseCase: GetNameUseCase,
-    private val getLastNameUseCase: GetLastNameUseCase,
-    private val getPhoneNumberUseCase: GetPhoneNumberUseCase,
+    getNameUseCase: GetNameUseCase,
+    getLastNameUseCase: GetLastNameUseCase,
+    getPhoneNumberUseCase: GetPhoneNumberUseCase,
     private val router: ProfileRouter
 ) : ViewModel() {
-    fun edit() {
-        router.editProfile()
-    }
+    val name = getNameUseCase()
+    val lastName = getLastNameUseCase()
+    val phone = getPhoneNumberUseCase()
 }

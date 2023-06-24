@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="take_a_new_loan">Take a new loan</string>
+    <string name="loan_date">loan date:</string>
+    <string name="amount">amount:</string>
+    <string name="percent">percent:</string>
+</resources>

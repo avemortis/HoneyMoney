@@ -17,9 +17,9 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentProfileBinding.inflate(inflater, container, false)
-        binding.button.setOnClickListener {
-            viewModel.edit()
-        }
+        binding.profileName.text = viewModel.name
+        binding.profileLastName.text = viewModel.lastName
+        binding.profilePhoneNumber.text = viewModel.phone
         return binding.root
     }
 }

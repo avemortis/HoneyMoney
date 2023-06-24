@@ -23,7 +23,7 @@ class NavigationModule {
     @Provides
     @Singleton
     fun provideSettingRouter(@MainRouterLevel router: Router): SettingRouter =
-        SettingRouterImpl(router)
+        SettingMainRouterImpl(router)
 
     @Provides
     @Singleton

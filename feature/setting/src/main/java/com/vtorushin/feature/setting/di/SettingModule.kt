@@ -1,11 +1,9 @@
 package com.vtorushin.feature.setting.di
 
-import android.content.Context
 import androidx.savedstate.SavedStateRegistryOwner
 import com.vtorushin.feature.setting.presentation.SettingRouter
 import com.vtorushin.feature.setting.presentation.SettingViewModel
 import com.vtorushin.feature.setting.presentation.SettingViewModelFactory
-import com.vtorushin.shared.setting.data.repository.SettingsRepositoryImpl
 import com.vtorushin.shared.setting.domain.repository.SettingsRepository
 import dagger.Module
 import dagger.Provides

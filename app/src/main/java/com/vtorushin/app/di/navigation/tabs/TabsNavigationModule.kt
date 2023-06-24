@@ -1,7 +1,6 @@
 package com.vtorushin.app.di.navigation.tabs
 
 import com.github.terrakok.cicerone.Cicerone
-import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.vtorushin.app.presentation.navigation.tab.ProfileRouterImpl
 import com.vtorushin.component.tab.di.FirstTab
@@ -26,7 +25,6 @@ class TabsNavigationModule {
     @FirstTab
     @Singleton
     fun provideFirstRouter(@FirstTab cicerone: Cicerone<Router>) : Router = cicerone.router
-
 
     @Provides
     @SecondTab
