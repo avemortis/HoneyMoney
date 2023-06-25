@@ -4,7 +4,11 @@ import com.google.gson.GsonBuilder
 import com.vtorushin.shared.auth.domain.repository.TokenRepository
 import com.vtorushin.shared.loan.data.remote.api.LoanApi
 import com.vtorushin.shared.loan.data.repository.LoanRemoteRepository
+import com.vtorushin.shared.loan.domain.repository.LoanConditionRepository
+import com.vtorushin.shared.loan.domain.repository.LoanIssueRepository
 import com.vtorushin.shared.loan.domain.repository.LoanRepository
+import dagger.Binds
+import dagger.BindsInstance
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -14,7 +18,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 class LoanModule {
     @Provides
     @LoanScope
-    fun provideAuthApi(): LoanApi {
+    fun provideRemoteRepository(api: LoanApi, tokenRepository: TokenRepository) =
+        LoanRemoteRepository(
+            api,
+            tokenRepository.get() ?: throw IllegalStateException("Auth Token is missing")
+        )
+
+    @Provides
+    @LoanScope
+    fun provideLoanApi(): LoanApi {
         val gson = GsonBuilder()
             .setPrettyPrinting()
             .setLenient()
@@ -28,6 +40,16 @@ class LoanModule {
 
     @Provides
     @LoanScope
-    fun provideAuthRepository(api: LoanApi, tokenRepository: TokenRepository): LoanRepository =
-        LoanRemoteRepository(api, tokenRepository.get() ?: throw IllegalStateException("Auth Token is missing"))
+    fun provideLoanRepository(loanRemoteRepository: LoanRemoteRepository): LoanRepository =
+        loanRemoteRepository
+
+    @Provides
+    @LoanScope
+    fun provideLoanConditionRepository(loanRemoteRepository: LoanRemoteRepository): LoanConditionRepository =
+        loanRemoteRepository
+
+    @Provides
+    @LoanScope
+    fun provideLoanIssueRepository(loanRemoteRepository: LoanRemoteRepository): LoanIssueRepository =
+        loanRemoteRepository
 }

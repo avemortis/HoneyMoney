@@ -29,6 +29,9 @@ class LoanHistoryFragment : Fragment() {
             viewModel.refresh()
             binding.swipeRefresh.isRefreshing = false
         }
+        binding.takeLoanButton.setOnClickListener {
+            viewModel.takeNewLoan()
+        }
         return binding.root
     }
 

@@ -4,7 +4,7 @@ import com.github.terrakok.cicerone.Router
 import com.vtorushin.component.tab.di.SecondTab
 import com.vtorushin.feature.loan.detail.getLoanDetailScreen
 import com.vtorushin.feature.loan.history.presentation.LoanHistoryRouter
-import com.vtorushin.feature.login.getLoginScreen
+import com.vtorushin.features.loan.take.getTakeLoanScreen
 
 class LoanHistoryRouterImpl(@SecondTab private val router: Router) : LoanHistoryRouter {
     override fun overviewLoan(loanId: Int) {
@@ -12,6 +12,6 @@ class LoanHistoryRouterImpl(@SecondTab private val router: Router) : LoanHistory
     }
 
     override fun takeNewLoan() {
-        router.navigateTo(getLoginScreen())
+        router.navigateTo(getTakeLoanScreen())
     }
 }

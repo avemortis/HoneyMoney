@@ -28,6 +28,8 @@ import com.vtorushin.feature.registration.di.RegistrationComponent
 import com.vtorushin.feature.registration.di.RegistrationScope
 import com.vtorushin.feature.setting.di.SettingComponent
 import com.vtorushin.feature.setting.di.SettingScope
+import com.vtorushin.features.loan.take.di.LoanTakeComponent
+import com.vtorushin.features.loan.take.di.LoanTakeScope
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -61,14 +63,17 @@ interface AppComponent {
     @ProfileScope
     val profileComponent: ProfileComponent.Factory
 
+    @LoanScope
+    val loanComponent: LoanComponent.Builder
+
     @LoanHistoryScope
     val loanHistoryComponent: LoanHistoryComponent.Factory
 
     @LoanDetailScope
     val loanDetailComponent: LoanDetailComponent.Factory
 
-    @LoanScope
-    val loanComponent: LoanComponent.Builder
+    @LoanTakeScope
+    val loanTakeComponent: LoanTakeComponent.Factory
 
     @Component.Factory
     interface Factory {

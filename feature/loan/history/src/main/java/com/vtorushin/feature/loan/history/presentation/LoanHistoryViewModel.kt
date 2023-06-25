@@ -35,6 +35,10 @@ class LoanHistoryViewModel @Inject constructor(
         }
     }
 
+    fun takeNewLoan() {
+        router.takeNewLoan()
+    }
+
     init {
         refresh()
     }
