@@ -5,7 +5,7 @@ import com.vtorushin.shared.loan.domain.entity.LoanRequest
 import com.vtorushin.shared.loan.utils.DataMapper
 
 data class LoanRequestDto(
-    @SerializedName("amount") val amount: Int,
+    @SerializedName("amount") val amount: Long,
     @SerializedName("firstName") val firstName: String,
     @SerializedName("lastName") val lastName: String,
     @SerializedName("percent") val percent: Double,

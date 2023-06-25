@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cancel_a_loan">cancel a loan</string>
+    <string name="take_a_loan">take a loan</string>
+    <string name="available_loan_terms">Available loan terms:</string>
+    <string name="loan_amount">Loan amount</string>
+    <string name="percent">Percent:</string>
+    <string name="max_amount">Max amount:</string>
+    <string name="period">Period:</string>
+    <string name="cannot_be_empty">The field cannot be empty</string>
+    <string name="too_big_number">You have entered an amount higher than the maximum</string>
+    <string name="successes">Your application has been accepted for processing</string>
+    <string name="network_error">Some kind of problems on a server. Please, try again later</string>
+    <string name="back">Back to history</string>
+</resources>

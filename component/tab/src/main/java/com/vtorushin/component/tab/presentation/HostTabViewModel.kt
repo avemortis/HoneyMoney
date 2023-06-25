@@ -25,9 +25,9 @@ class HostTabViewModel : ViewModel() {
         fm.findFragmentByTag(FIRST_SCREEN)?.view?.visibility = View.INVISIBLE
     }
 
-    fun getActive() = when(unActive) {
-        FIRST_SCREEN -> second
-        SECOND_SCREEN -> first
+    fun getActive(fm: FragmentManager) = when(unActive) {
+        FIRST_SCREEN -> fm.findFragmentByTag(SECOND_SCREEN) as ContentTabFragment
+        SECOND_SCREEN -> fm.findFragmentByTag(FIRST_SCREEN) as ContentTabFragment
         else -> {throw IllegalStateException("Unknown fragment")}
     }
 }

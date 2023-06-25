@@ -5,7 +5,7 @@ import com.vtorushin.shared.loan.domain.entity.LoanCondition
 import com.vtorushin.shared.loan.utils.DataMapper
 
 data class LoanConditionDto(
-    @SerializedName("maxAmount") val maxAmount: Int,
+    @SerializedName("maxAmount") val maxAmount: Long,
     @SerializedName("percent") val percent: Double,
     @SerializedName("period") val period: Int
 ) : DataMapper<LoanCondition> {

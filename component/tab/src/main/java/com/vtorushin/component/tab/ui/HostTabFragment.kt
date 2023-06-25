@@ -61,7 +61,7 @@ class HostTabFragment : Fragment() {
 
     private val callback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            val active = viewModel.getActive()
+            val active = viewModel.getActive(childFragmentManager)
             if (!active.exit()) {
                 isEnabled = false
                 requireActivity().onBackPressedDispatcher.onBackPressed()

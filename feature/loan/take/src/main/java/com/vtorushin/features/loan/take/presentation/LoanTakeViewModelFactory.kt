@@ -10,6 +10,10 @@ import com.vtorushin.shared.loan.domain.repository.LoanRepository
 import com.vtorushin.shared.loan.domain.usecases.CreateLoanUseCase
 import com.vtorushin.shared.loan.domain.usecases.GetLoanConditionUseCase
 import com.vtorushin.shared.loan.domain.usecases.GetLoansUseCase
+import com.vtorushin.shared.setting.domain.repository.SettingsRepository
+import com.vtorushin.shared.setting.domain.usecases.GetLastNameUseCase
+import com.vtorushin.shared.setting.domain.usecases.GetNameUseCase
+import com.vtorushin.shared.setting.domain.usecases.GetPhoneNumberUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -19,6 +23,7 @@ class LoanTakeViewModelFactory @AssistedInject constructor(
     @Assisted private val savedStateRegistryOwner: SavedStateRegistryOwner,
     @Assisted private val loanConditionRepository: LoanConditionRepository,
     @Assisted private val loanIssueRepository: LoanIssueRepository,
+    @Assisted private val settingsRepository: SettingsRepository,
     @Assisted private val router: LoanTakeRouter
 ) : AbstractSavedStateViewModelFactory(savedStateRegistryOwner, null) {
     override fun <T : ViewModel> create(
@@ -31,6 +36,9 @@ class LoanTakeViewModelFactory @AssistedInject constructor(
                 LoanTakeViewModel(
                     GetLoanConditionUseCase(loanConditionRepository),
                     CreateLoanUseCase(loanIssueRepository),
+                    GetNameUseCase(settingsRepository),
+                    GetLastNameUseCase(settingsRepository),
+                    GetPhoneNumberUseCase(settingsRepository),
                     router
                 ) as T
             else -> throw IllegalStateException("Unknown viewModel")
@@ -43,6 +51,7 @@ class LoanTakeViewModelFactory @AssistedInject constructor(
             savedStateRegistryOwner: SavedStateRegistryOwner,
             loanConditionRepository: LoanConditionRepository,
             loanIssueRepository: LoanIssueRepository,
+            settingsRepository: SettingsRepository,
             router: LoanTakeRouter
         ): LoanTakeViewModelFactory
     }

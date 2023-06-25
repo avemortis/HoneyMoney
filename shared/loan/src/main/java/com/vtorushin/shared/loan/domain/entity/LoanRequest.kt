@@ -1,7 +1,7 @@
 package com.vtorushin.shared.loan.domain.entity
 
 data class LoanRequest(
-    val amount: Int,
+    val amount: Long,
     val firstName: String,
     val lastName: String,
     val percent: Double,
