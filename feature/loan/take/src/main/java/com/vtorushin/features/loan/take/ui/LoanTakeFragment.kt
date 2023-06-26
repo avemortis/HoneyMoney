@@ -20,7 +20,8 @@ class LoanTakeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.load()
+        if (savedInstanceState == null)
+            viewModel.load()
     }
 
     override fun onCreateView(
@@ -52,6 +53,11 @@ class LoanTakeFragment : Fragment() {
     override fun onDestroy() {
         binding = null
         super.onDestroy()
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        viewModel.inputAmount = String()
     }
 
     private fun emptyError() {
@@ -87,7 +93,7 @@ class LoanTakeFragment : Fragment() {
 
     private fun successes() {
         Toast.makeText(requireContext(), getString(R.string.successes), Toast.LENGTH_SHORT).show()
-        binding?.let { binding->
+        binding?.let { binding ->
             binding.correctIcon.visibility = View.VISIBLE
             binding.takeLoanButton.visibility = View.GONE
             binding.amountInput.isEnabled = false

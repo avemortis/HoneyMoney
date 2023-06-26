@@ -2,12 +2,16 @@ package com.vtorushin.features.loan.take.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vtorushin.shared.loan.domain.entity.LoanCondition
 import com.vtorushin.shared.loan.domain.entity.LoanRequest
 import com.vtorushin.shared.loan.domain.usecases.CreateLoanUseCase
 import com.vtorushin.shared.loan.domain.usecases.GetLoanConditionUseCase
 import com.vtorushin.shared.setting.domain.usecases.GetLastNameUseCase
 import com.vtorushin.shared.setting.domain.usecases.GetNameUseCase
 import com.vtorushin.shared.setting.domain.usecases.GetPhoneNumberUseCase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,10 +29,12 @@ class LoanTakeViewModel @Inject constructor(
     private var percent = 0.0
     private var period = 0
     private val singleStates = MutableSharedFlow<LoanTakeUiState>()
-    private val savedStates = MutableStateFlow<LoanTakeUiState>(LoanTakeUiState.Loading)
+    private val savedStates = MutableSharedFlow<LoanTakeUiState>(replay = 2)
     val state = merge(singleStates, savedStates)
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun load() {
+        savedStates.resetReplayCache()
         viewModelScope.launch {
             savedStates.emit(LoanTakeUiState.Loading)
             try {
@@ -76,6 +82,4 @@ class LoanTakeViewModel @Inject constructor(
             savedStates.emit(LoanTakeUiState.ServerError)
         }
     }
-
-
 }
