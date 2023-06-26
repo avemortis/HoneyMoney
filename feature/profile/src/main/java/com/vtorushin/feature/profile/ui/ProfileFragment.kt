@@ -20,7 +20,7 @@ class ProfileFragment : Fragment() {
         binding.profileName.text = viewModel.name
         binding.profileLastName.text = viewModel.lastName
         binding.profilePhoneNumber.text = viewModel.phone
-        binding.showOnBoardingButton.setOnClickListener { viewModel.onBoarding() }
+        binding.showOnBoardingButton.setOnClickListener { viewModel.onBoarding(parentFragmentManager) }
         return binding.root
     }
 }

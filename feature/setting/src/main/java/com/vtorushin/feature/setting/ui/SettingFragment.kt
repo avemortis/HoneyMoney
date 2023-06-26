@@ -39,11 +39,13 @@ class SettingFragment : Fragment() {
         }
         binding.nameEditText.doAfterTextChanged { text -> viewModel.name = text.toString() }
         binding.lastNameEditText.doAfterTextChanged { text -> viewModel.lastName = text.toString() }
-        binding.phoneNumberEditText.doAfterTextChanged { text -> viewModel.phoneNumber = text.toString() }
+        binding.phoneNumberEditText.doAfterTextChanged { text ->
+            viewModel.phoneNumber = text.toString()
+        }
         binding.rememberMeCheckbox.setOnCheckedChangeListener { _, to ->
             viewModel.onRememberMeChanged(to)
         }
-        binding.saveSettingsButton.setOnClickListener { viewModel.saveSettings() }
+        binding.saveSettingsButton.setOnClickListener { viewModel.saveSettings(parentFragmentManager) }
         return binding.root
     }
 

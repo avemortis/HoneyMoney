@@ -50,7 +50,7 @@ class SettingsRepositoryImpl @Inject constructor(
     override fun getLoginSecurityType(): LoginSecurityType {
         val pref = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
         return LoginSecurityType.valueOf(
-            pref.getString(SECURITY_SETTING, null) ?: LoginSecurityType.LOGIN_PASSWORD.name
+            pref.getString(SECURITY_SETTING, null) ?: LoginSecurityType.NO_SECURITY.name
         )
     }
 

@@ -24,8 +24,8 @@ class NavigationModule {
 
     @Provides
     @Singleton
-    fun provideSettingRouter(@MainRouterLevel router: Router, fragmentManager: FragmentManager): SettingRouter =
-        SettingMainRouterImpl(router, fragmentManager)
+    fun provideSettingRouter(@MainRouterLevel router: Router): SettingRouter =
+        SettingMainRouterImpl(router)
 
     @Provides
     @Singleton
@@ -55,9 +55,4 @@ class NavigationModule {
     @Singleton
     fun provideTabsScreenProvider(): TabsScreenProvider =
         TabsScreenProvideImpl()
-
-    @Provides
-    @Singleton
-    fun provideFragmentManager(activity: MainActivity): FragmentManager =
-        activity.supportFragmentManager
 }

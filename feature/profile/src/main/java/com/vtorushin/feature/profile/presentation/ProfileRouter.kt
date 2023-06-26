@@ -1,5 +1,7 @@
 package com.vtorushin.feature.profile.presentation
 
+import androidx.fragment.app.FragmentManager
+
 interface ProfileRouter {
-    fun showOnBoarding()
+    fun showOnBoarding(fragmentManager: FragmentManager)
 }

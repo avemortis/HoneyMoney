@@ -4,9 +4,11 @@ import androidx.fragment.app.FragmentManager
 import com.github.terrakok.cicerone.Router
 import com.vtorushin.feature.onboarding.ui.OnBoardingHostFragment
 import com.vtorushin.feature.profile.presentation.ProfileRouter
+import javax.inject.Inject
 
-class ProfileRouterImpl(private val fragmentManager: FragmentManager) : ProfileRouter {
-    override fun showOnBoarding() {
+class ProfileRouterImpl : ProfileRouter {
+    @Inject
+    override fun showOnBoarding(fragmentManager: FragmentManager) {
         OnBoardingHostFragment().show(fragmentManager, OnBoardingHostFragment.TAG)
     }
 }

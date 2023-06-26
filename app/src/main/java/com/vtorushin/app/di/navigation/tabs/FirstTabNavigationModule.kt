@@ -14,7 +14,7 @@ import javax.inject.Singleton
 class FirstTabNavigationModule {
     @Provides
     @Singleton
-    fun provideProfileRouter(fragmentManager: FragmentManager) : ProfileRouter = ProfileRouterImpl(fragmentManager)
+    fun provideProfileRouter() : ProfileRouter = ProfileRouterImpl()
 
     @Provides
     @FirstTab

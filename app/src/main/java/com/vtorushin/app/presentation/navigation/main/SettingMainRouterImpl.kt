@@ -8,10 +8,9 @@ import com.vtorushin.feature.onboarding.ui.OnBoardingHostFragment
 import com.vtorushin.feature.setting.presentation.SettingRouter
 
 class SettingMainRouterImpl(
-    @MainRouterLevel private val router: Router,
-    private val fragmentManager: FragmentManager
+    @MainRouterLevel private val router: Router
 ) : SettingRouter {
-    override fun showProfile() {
+    override fun showProfile(fragmentManager: FragmentManager) {
         router.replaceScreen(getTabScreen())
         OnBoardingHostFragment().show(fragmentManager, OnBoardingHostFragment.TAG)
     }

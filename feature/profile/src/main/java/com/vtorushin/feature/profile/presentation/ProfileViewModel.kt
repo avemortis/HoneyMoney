@@ -1,5 +1,6 @@
 package com.vtorushin.feature.profile.presentation
 
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModel
 import com.vtorushin.shared.setting.domain.usecases.GetLastNameUseCase
 import com.vtorushin.shared.setting.domain.usecases.GetNameUseCase
@@ -16,7 +17,7 @@ class ProfileViewModel @Inject constructor(
     val lastName = getLastNameUseCase()
     val phone = getPhoneNumberUseCase()
 
-    fun onBoarding() {
-        router.showOnBoarding()
+    fun onBoarding(fragmentManager: FragmentManager) {
+        router.showOnBoarding(fragmentManager)
     }
 }
