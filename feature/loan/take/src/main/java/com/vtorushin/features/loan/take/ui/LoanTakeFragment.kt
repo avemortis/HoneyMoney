@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.vtorushin.feature.loan.take.R
 import com.vtorushin.feature.loan.take.databinding.FragmentLoanTakeBinding
+import com.vtorushin.feature.loan.utils.setLoanWasTakenResult
 import com.vtorushin.features.loan.take.di.component
 import com.vtorushin.features.loan.take.presentation.LoanTakeUiState
 import kotlinx.coroutines.launch
@@ -99,5 +100,6 @@ class LoanTakeFragment : Fragment() {
             binding.amountInput.isEnabled = false
             binding.cancelButton.text = getString(R.string.back)
         }
+        setLoanWasTakenResult()
     }
 }

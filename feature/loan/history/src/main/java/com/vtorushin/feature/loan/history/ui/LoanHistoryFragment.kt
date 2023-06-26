@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.FragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import com.vtorushin.feature.loan.history.R
 import com.vtorushin.feature.loan.history.databinding.FragmentLoanHistoryBinding
 import com.vtorushin.feature.loan.history.di.component
 import com.vtorushin.feature.loan.history.presentation.LoanHistoryUiState
+import com.vtorushin.feature.loan.utils.listenForLoanTaken
 import com.vtorushin.shared.loan.domain.entity.Loan
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -31,6 +33,7 @@ class LoanHistoryFragment : Fragment() {
         }
         binding.takeLoanButton.setOnClickListener {
             viewModel.takeNewLoan()
+            listenForLoanTaken { viewModel.refresh() }
         }
         return binding.root
     }

@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import com.github.terrakok.cicerone.Screen
 import com.vtorushin.component.tab.getTabScreen
 import com.vtorushin.feature.authoption.getAuthOptionScreen
-import com.vtorushin.feature.profile.getProfileScreen
 import com.vtorushin.feature.setting.getSettingScreen
 import com.vtorushin.feature.setting.ui.SettingLaunchMode
 import com.vtorushin.shared.auth.domain.usecases.GetTokenUseCase

@@ -16,6 +16,11 @@
         <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/loan/history/src/main/res/layout/item_loan.xml" value="0.5" />
         <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/loan/take/src/main/res/layout/fragment_loan_take.xml" value="0.25" />
         <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/login/src/main/res/layout/fragment_login.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/onboarding/src/main/res/drawable/ic_baseline_arrow_circle_left_24.xml" value="0.1575" />
+        <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/onboarding/src/main/res/drawable/ic_baseline_arrow_circle_right_24.xml" value="0.1575" />
+        <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/onboarding/src/main/res/layout/fragment_on_boarding_host.xml" value="0.28306159420289856" />
+        <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/onboarding/src/main/res/layout/fragment_on_boarding_item.xml" value="0.33" />
+        <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/onboarding/src/main/res/layout/fragment_unboarding_host.xml" value="0.3098958333333333" />
         <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/profile/src/main/res/drawable/ic_baseline_emoji_emotions_24.xml" value="0.2775" />
         <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/profile/src/main/res/layout/fragment_profile.xml" value="0.2786458333333333" />
         <entry key="..\:/Users/adara/AndroidStudioProjects/2023_q2_vtorushin/feature/registration/src/main/res/layout/fragment_registration.xml" value="0.2708333333333333" />

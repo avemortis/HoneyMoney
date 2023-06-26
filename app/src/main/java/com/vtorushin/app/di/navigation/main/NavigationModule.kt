@@ -1,9 +1,11 @@
 package com.vtorushin.app.di.navigation.main
 
+import androidx.fragment.app.FragmentManager
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.vtorushin.app.presentation.navigation.main.*
+import com.vtorushin.app.ui.MainActivity
 import com.vtorushin.component.tab.presentation.TabsScreenProvider
 import com.vtorushin.feature.authoption.presentation.AuthOptionRouter
 import com.vtorushin.feature.login.presentation.LoginRouter
@@ -22,8 +24,8 @@ class NavigationModule {
 
     @Provides
     @Singleton
-    fun provideSettingRouter(@MainRouterLevel router: Router): SettingRouter =
-        SettingMainRouterImpl(router)
+    fun provideSettingRouter(@MainRouterLevel router: Router, fragmentManager: FragmentManager): SettingRouter =
+        SettingMainRouterImpl(router, fragmentManager)
 
     @Provides
     @Singleton
@@ -53,4 +55,9 @@ class NavigationModule {
     @Singleton
     fun provideTabsScreenProvider(): TabsScreenProvider =
         TabsScreenProvideImpl()
+
+    @Provides
+    @Singleton
+    fun provideFragmentManager(activity: MainActivity): FragmentManager =
+        activity.supportFragmentManager
 }

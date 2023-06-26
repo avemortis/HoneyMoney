@@ -45,6 +45,7 @@ dependencies {
     implementation project(":feature:loan:detail")
     implementation project(":feature:loan:take")
     implementation project(":feature:setting")
+    implementation project(":feature:onboarding")
     implementation project(":shared:setting")
     implementation project(":shared:auth")
     implementation project(":shared:loan")

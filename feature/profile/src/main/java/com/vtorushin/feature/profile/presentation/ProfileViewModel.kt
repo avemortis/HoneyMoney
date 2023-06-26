@@ -15,4 +15,8 @@ class ProfileViewModel @Inject constructor(
     val name = getNameUseCase()
     val lastName = getLastNameUseCase()
     val phone = getPhoneNumberUseCase()
+
+    fun onBoarding() {
+        router.showOnBoarding()
+    }
 }

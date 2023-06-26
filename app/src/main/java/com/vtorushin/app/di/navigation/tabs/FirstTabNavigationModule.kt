@@ -1,5 +1,6 @@
 package com.vtorushin.app.di.navigation.tabs
 
+import androidx.fragment.app.FragmentManager
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
 import com.vtorushin.app.presentation.navigation.tab.ProfileRouterImpl
@@ -13,7 +14,7 @@ import javax.inject.Singleton
 class FirstTabNavigationModule {
     @Provides
     @Singleton
-    fun provideProfileRouter(@FirstTab router: Router) : ProfileRouter = ProfileRouterImpl(router)
+    fun provideProfileRouter(fragmentManager: FragmentManager) : ProfileRouter = ProfileRouterImpl(fragmentManager)
 
     @Provides
     @FirstTab
