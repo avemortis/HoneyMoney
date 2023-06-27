@@ -6,7 +6,7 @@ import com.vtorushin.shared.auth.domain.entity.AuthBody
 import com.vtorushin.shared.auth.domain.usecases.LoginUseCase
 import com.vtorushin.shared.auth.domain.usecases.SetTokenUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
@@ -20,7 +20,7 @@ class LoginViewModel(
 
     private val _errors = MutableSharedFlow<LoginUiState>()
     private val _state = MutableSharedFlow<LoginUiState>(replay = 1)
-    val state = _state.asSharedFlow()
+    val state = merge(_errors, _state)
 
     fun register() {
         viewModelScope.launch {

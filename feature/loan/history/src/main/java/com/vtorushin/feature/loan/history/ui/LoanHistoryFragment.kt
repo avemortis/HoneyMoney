@@ -26,16 +26,14 @@ class LoanHistoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLoanHistoryBinding.inflate(inflater, container, false)
+        listenForLoanTaken { viewModel.refresh() }
         subscribeState()
         binding?.let { binding ->
             binding.swipeRefresh.setOnRefreshListener {
                 viewModel.refresh()
                 binding.swipeRefresh.isRefreshing = false
             }
-            binding.takeLoanButton.setOnClickListener {
-                viewModel.takeNewLoan()
-                listenForLoanTaken { viewModel.refresh() }
-            }
+            binding.takeLoanButton.setOnClickListener { viewModel.takeNewLoan() }
         }
 
         return binding?.root
@@ -69,6 +67,7 @@ class LoanHistoryFragment : Fragment() {
 
     private fun emptyListState() {
         binding?.let { binding ->
+            binding.loansRecyclerView.visibility = View.INVISIBLE
             binding.centerText.visibility = View.VISIBLE
             binding.centerText.text = getString(R.string.you_have_not_taken_any_loans)
             binding.loanHistoryProgressBar.visibility = View.INVISIBLE

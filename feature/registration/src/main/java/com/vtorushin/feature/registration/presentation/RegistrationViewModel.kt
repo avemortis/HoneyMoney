@@ -9,7 +9,6 @@ import com.vtorushin.shared.auth.domain.usecases.SetTokenUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
-import java.net.ConnectException
 
 class RegistrationViewModel(
     private val registerUseCase: RegisterUseCase,
@@ -22,7 +21,7 @@ class RegistrationViewModel(
 
     private val _errors = MutableSharedFlow<RegistrationUiState>()
     private val _state = MutableSharedFlow<RegistrationUiState>(replay = 1)
-    val state = _state.asSharedFlow()
+    val state = merge(_errors, _state)
 
     fun register() {
         viewModelScope.launch {

@@ -3,6 +3,7 @@ package com.vtorushin.feature.login.di
 
 import androidx.savedstate.SavedStateRegistryOwner
 import com.google.gson.GsonBuilder
+import com.vtorushin.feature.login.BuildConfig
 import com.vtorushin.feature.login.presentation.LoginRouter
 import com.vtorushin.feature.login.presentation.LoginViewModel
 import com.vtorushin.feature.login.presentation.LoginViewModelFactory
@@ -28,7 +29,7 @@ class LoginModule {
             .create()
 
         return Retrofit.Builder()
-            .baseUrl("https://shiftlab.cft.ru:7777")
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()

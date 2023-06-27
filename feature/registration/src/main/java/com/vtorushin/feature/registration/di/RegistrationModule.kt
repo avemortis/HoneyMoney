@@ -3,6 +3,7 @@ package com.vtorushin.feature.registration.di
 import android.content.Context
 import androidx.savedstate.SavedStateRegistryOwner
 import com.google.gson.GsonBuilder
+import com.vtorushin.feature.registration.BuildConfig
 import com.vtorushin.feature.registration.presentation.RegistrationRouter
 import com.vtorushin.feature.registration.presentation.RegistrationViewModel
 import com.vtorushin.feature.registration.presentation.RegistrationViewModelFactory
@@ -28,7 +29,7 @@ class RegistrationModule {
             .create()
 
         return Retrofit.Builder()
-            .baseUrl("https://shiftlab.cft.ru:7777")
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()

@@ -1,14 +1,13 @@
 package com.vtorushin.feature.loan.di
 
 import com.google.gson.GsonBuilder
+import com.vtorushin.feature.loan.BuildConfig
 import com.vtorushin.shared.auth.domain.repository.TokenRepository
 import com.vtorushin.shared.loan.data.remote.api.LoanApi
 import com.vtorushin.shared.loan.data.repository.LoanRemoteRepository
 import com.vtorushin.shared.loan.domain.repository.LoanConditionRepository
 import com.vtorushin.shared.loan.domain.repository.LoanIssueRepository
 import com.vtorushin.shared.loan.domain.repository.LoanRepository
-import dagger.Binds
-import dagger.BindsInstance
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -32,7 +31,7 @@ class LoanModule {
             .setLenient()
             .create()
         return Retrofit.Builder()
-            .baseUrl("https://shiftlab.cft.ru:7777")
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(LoanApi::class.java)
