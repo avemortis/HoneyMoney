@@ -1,5 +1,5 @@
 <resources>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="show_on_boarding">Show on boarding</string>
+    <string name="show_on_boarding">Show onboarding</string>
     <string name="its_your_photo">Its your photo!</string>
 </resources>

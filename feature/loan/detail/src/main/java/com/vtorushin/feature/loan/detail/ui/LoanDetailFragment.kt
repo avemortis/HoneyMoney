@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class LoanDetailFragment : Fragment() {
-    private lateinit var binding: FragmentLoanDetailBinding
+    private var binding: FragmentLoanDetailBinding? = null
     private val viewModel by lazy { component().viewModel() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,11 +32,18 @@ class LoanDetailFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentLoanDetailBinding.inflate(inflater, container, false)
-        binding.backButton.setOnClickListener { viewModel.back() }
-        observeState()
-        return binding.root
+        binding?.let { binding ->
+            binding.backButton.setOnClickListener { viewModel.back() }
+            observeState()
+        }
+        return binding?.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 
     private fun observeState() {
@@ -52,33 +59,39 @@ class LoanDetailFragment : Fragment() {
     }
 
     private fun drawState(state: LoanDetailUiState.Content) {
-        binding.content.visibility = View.VISIBLE
-        binding.progressBar.visibility = View.INVISIBLE
-        binding.loanDateValue.text = trimTime(state.loan.date)
-        binding.loanAmountValue.text = state.loan.amount.toString()
-        binding.loanProcentValue.text = state.loan.percent.toString()
-        binding.nameValue.text = state.loan.firstName
-        binding.lastNameValue.text = state.loan.lastName
-        binding.phoneValue.text = state.loan.phoneNumber
-        binding.status.text = state.loan.state.name
-        binding.id.text = getString(R.string.id, state.loan.id)
-        binding.message.text = when (state.loan.state) {
-            LoanStatusModel.APPROVED -> getString(R.string.approved_message)
-            LoanStatusModel.REGISTERED -> getString(R.string.registered_message)
-            LoanStatusModel.REJECTED -> getString(R.string.reject_message)
+        binding?.let { binding->
+            binding.content.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.INVISIBLE
+            binding.loanDateValue.text = trimTime(state.loan.date)
+            binding.loanAmountValue.text = state.loan.amount.toString()
+            binding.loanProcentValue.text = state.loan.percent.toString()
+            binding.nameValue.text = state.loan.firstName
+            binding.lastNameValue.text = state.loan.lastName
+            binding.phoneValue.text = state.loan.phoneNumber
+            binding.status.text = state.loan.state.name
+            binding.id.text = getString(R.string.id, state.loan.id)
+            binding.message.text = when (state.loan.state) {
+                LoanStatusModel.APPROVED -> getString(R.string.approved_message)
+                LoanStatusModel.REGISTERED -> getString(R.string.registered_message)
+                LoanStatusModel.REJECTED -> getString(R.string.reject_message)
+            }
         }
     }
 
     private fun error() {
-        binding.content.visibility = View.INVISIBLE
-        binding.progressBar.visibility = View.INVISIBLE
-        Toast.makeText(requireContext(), getString(R.string.failed_to_connect), Toast.LENGTH_SHORT)
-            .show()
+        binding?.let { binding ->
+            binding.content.visibility = View.INVISIBLE
+            binding.progressBar.visibility = View.INVISIBLE
+            Toast.makeText(requireContext(), getString(R.string.failed_to_connect), Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 
     private fun loading() {
-        binding.content.visibility = View.INVISIBLE
-        binding.progressBar.visibility = View.VISIBLE
+        binding?.let { binding ->
+            binding.content.visibility = View.INVISIBLE
+            binding.progressBar.visibility = View.VISIBLE
+        }
     }
 
     companion object {

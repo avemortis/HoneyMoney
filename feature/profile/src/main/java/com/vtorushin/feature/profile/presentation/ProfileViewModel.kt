@@ -17,7 +17,7 @@ class ProfileViewModel @Inject constructor(
     val lastName = getLastNameUseCase()
     val phone = getPhoneNumberUseCase()
 
-    fun onBoarding(fragmentManager: FragmentManager) {
+    fun onboarding(fragmentManager: FragmentManager) {
         router.showOnBoarding(fragmentManager)
     }
 }

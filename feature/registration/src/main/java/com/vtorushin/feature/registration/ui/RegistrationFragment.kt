@@ -18,17 +18,26 @@ import kotlinx.coroutines.launch
 
 class RegistrationFragment : Fragment() {
     private val viewModel by lazy { component().viewModel() }
-    private lateinit var binding: FragmentRegistrationBinding
+    private var binding: FragmentRegistrationBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentRegistrationBinding.inflate(inflater, container, false)
         subscribe()
-        binding.registrationButton.setOnClickListener { viewModel.register() }
-        binding.loginEditText.doAfterTextChanged { text -> viewModel.login = text.toString() }
-        binding.passwordEditText.doAfterTextChanged { text -> viewModel.password = text.toString() }
-        return binding.root
+        binding?.let { binding ->
+            binding.registrationButton.setOnClickListener { viewModel.register() }
+            binding.loginEditText.doAfterTextChanged { text -> viewModel.login = text.toString() }
+            binding.passwordEditText.doAfterTextChanged { text ->
+                viewModel.password = text.toString()
+            }
+        }
+        return binding?.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 
     private fun subscribe() {
@@ -42,6 +51,7 @@ class RegistrationFragment : Fragment() {
             }
         }
     }
+
     private fun handleErrorState(state: RegistrationUiState.Error) {
         when (state.error) {
             RegistrationError.USER_ALREADY_EXIST -> showToast(getString(R.string.user_already_exist))
@@ -52,11 +62,11 @@ class RegistrationFragment : Fragment() {
     }
 
     private fun setErrorLoginEmpty() {
-        binding.loginEditText.error = getString(R.string.cannot_be_empty)
+        binding?.loginEditText?.error = getString(R.string.cannot_be_empty)
     }
 
     private fun setErrorPasswordEmpty() {
-        binding.passwordEditText.error = getString(R.string.cannot_be_empty)
+        binding?.passwordEditText?.error = getString(R.string.cannot_be_empty)
     }
 
     private fun handleSuccessesState() {
@@ -65,8 +75,10 @@ class RegistrationFragment : Fragment() {
     }
 
     private fun drawState(state: RegistrationUiState.State) {
-        binding.loginEditText.setText(state.login)
-        binding.passwordEditText.setText(state.password)
+        binding?.let { binding ->
+            binding.loginEditText.setText(state.login)
+            binding.passwordEditText.setText(state.password)
+        }
     }
 
     private fun showToast(text: String) {

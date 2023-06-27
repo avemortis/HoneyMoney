@@ -4,7 +4,7 @@ import androidx.fragment.app.FragmentManager
 import com.github.terrakok.cicerone.Router
 import com.vtorushin.app.di.navigation.main.MainRouterLevel
 import com.vtorushin.component.tab.getTabScreen
-import com.vtorushin.feature.onboarding.ui.OnBoardingHostFragment
+import com.vtorushin.feature.onboarding.ui.OnboardingHostFragment
 import com.vtorushin.feature.setting.presentation.SettingRouter
 
 class SettingMainRouterImpl(
@@ -12,6 +12,6 @@ class SettingMainRouterImpl(
 ) : SettingRouter {
     override fun showProfile(fragmentManager: FragmentManager) {
         router.replaceScreen(getTabScreen())
-        OnBoardingHostFragment().show(fragmentManager, OnBoardingHostFragment.TAG)
+        OnboardingHostFragment().show(fragmentManager, OnboardingHostFragment.TAG)
     }
 }

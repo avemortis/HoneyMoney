@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.vtorushin.feature.profile.R
 import com.vtorushin.feature.profile.databinding.FragmentProfileBinding
 import com.vtorushin.feature.profile.di.component
 
@@ -20,7 +19,7 @@ class ProfileFragment : Fragment() {
         binding.profileName.text = viewModel.name
         binding.profileLastName.text = viewModel.lastName
         binding.profilePhoneNumber.text = viewModel.phone
-        binding.showOnBoardingButton.setOnClickListener { viewModel.onBoarding(parentFragmentManager) }
+        binding.showOnBoardingButton.setOnClickListener { viewModel.onboarding(parentFragmentManager) }
         return binding.root
     }
 }

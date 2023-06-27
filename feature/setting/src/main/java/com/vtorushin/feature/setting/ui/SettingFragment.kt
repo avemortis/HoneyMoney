@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 class SettingFragment : Fragment() {
     private val viewModel by lazy { component().viewModel() }
-    private lateinit var binding: FragmentSettingBinding
+    private var binding: FragmentSettingBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,21 +32,35 @@ class SettingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentSettingBinding.inflate(inflater, container, false)
         lifecycleScope.launch {
             viewModel.state.collect(this@SettingFragment::handleState)
         }
-        binding.nameEditText.doAfterTextChanged { text -> viewModel.name = text.toString() }
-        binding.lastNameEditText.doAfterTextChanged { text -> viewModel.lastName = text.toString() }
-        binding.phoneNumberEditText.doAfterTextChanged { text ->
-            viewModel.phoneNumber = text.toString()
+        binding?.let { binding ->
+            binding.nameEditText.doAfterTextChanged { text -> viewModel.name = text.toString() }
+            binding.lastNameEditText.doAfterTextChanged { text ->
+                viewModel.lastName = text.toString()
+            }
+            binding.phoneNumberEditText.doAfterTextChanged { text ->
+                viewModel.phoneNumber = text.toString()
+            }
+            binding.rememberMeCheckbox.setOnCheckedChangeListener { _, to ->
+                viewModel.onRememberMeChanged(to)
+            }
+            binding.saveSettingsButton.setOnClickListener {
+                viewModel.saveSettings(
+                    parentFragmentManager
+                )
+            }
         }
-        binding.rememberMeCheckbox.setOnCheckedChangeListener { _, to ->
-            viewModel.onRememberMeChanged(to)
-        }
-        binding.saveSettingsButton.setOnClickListener { viewModel.saveSettings(parentFragmentManager) }
-        return binding.root
+
+        return binding?.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 
     private fun handleState(state: SettingUiState) {
@@ -60,21 +74,23 @@ class SettingFragment : Fragment() {
     }
 
     private fun setErrorToName() {
-        binding.nameEditText.error = getString(R.string.cannot_be_empty)
+        binding?.nameEditText?.error = getString(R.string.cannot_be_empty)
     }
 
     private fun setErrorToLastName() {
-        binding.lastNameEditText.error = getString(R.string.cannot_be_empty)
+        binding?.lastNameEditText?.error = getString(R.string.cannot_be_empty)
     }
 
     private fun setErrorToPhoneNumber() {
-        binding.phoneNumberEditText.error = getString(R.string.cannot_be_empty)
+        binding?.phoneNumberEditText?.error = getString(R.string.cannot_be_empty)
     }
 
     private fun setState(state: SettingUiState.SettingsState) {
-        binding.nameEditText.setText(state.name)
-        binding.lastNameEditText.setText(state.lastName)
-        binding.rememberMeCheckbox.isChecked = state.isRemember
+        binding?.let { binding ->
+            binding.nameEditText.setText(state.name)
+            binding.lastNameEditText.setText(state.lastName)
+            binding.rememberMeCheckbox.isChecked = state.isRemember
+        }
     }
 
     companion object {

@@ -19,23 +19,31 @@ import kotlinx.coroutines.launch
 
 class LoanHistoryFragment : Fragment() {
     private val viewModel by lazy { component().viewModel() }
-    private lateinit var binding: FragmentLoanHistoryBinding
+    private var binding: FragmentLoanHistoryBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentLoanHistoryBinding.inflate(inflater, container, false)
         subscribeState()
-        binding.swipeRefresh.setOnRefreshListener {
-            viewModel.refresh()
-            binding.swipeRefresh.isRefreshing = false
+        binding?.let { binding ->
+            binding.swipeRefresh.setOnRefreshListener {
+                viewModel.refresh()
+                binding.swipeRefresh.isRefreshing = false
+            }
+            binding.takeLoanButton.setOnClickListener {
+                viewModel.takeNewLoan()
+                listenForLoanTaken { viewModel.refresh() }
+            }
         }
-        binding.takeLoanButton.setOnClickListener {
-            viewModel.takeNewLoan()
-            listenForLoanTaken { viewModel.refresh() }
-        }
-        return binding.root
+
+        return binding?.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 
     private fun subscribeState() {
@@ -52,31 +60,39 @@ class LoanHistoryFragment : Fragment() {
     }
 
     private fun loadingState() {
-        binding.loansRecyclerView.visibility = View.INVISIBLE
-        binding.centerText.visibility = View.INVISIBLE
-        binding.loanHistoryProgressBar.visibility = View.VISIBLE
+        binding?.let { binding ->
+            binding.loansRecyclerView.visibility = View.INVISIBLE
+            binding.centerText.visibility = View.INVISIBLE
+            binding.loanHistoryProgressBar.visibility = View.VISIBLE
+        }
     }
 
     private fun emptyListState() {
-        binding.centerText.visibility = View.VISIBLE
-        binding.centerText.text = getString(R.string.you_have_not_taken_any_loans)
-        binding.loanHistoryProgressBar.visibility = View.INVISIBLE
+        binding?.let { binding ->
+            binding.centerText.visibility = View.VISIBLE
+            binding.centerText.text = getString(R.string.you_have_not_taken_any_loans)
+            binding.loanHistoryProgressBar.visibility = View.INVISIBLE
+        }
     }
 
     private fun errorState(error: String) {
-        binding.centerText.visibility = View.VISIBLE
-        binding.centerText.text = error
-        binding.loanHistoryProgressBar.visibility = View.INVISIBLE
-        Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+        binding?.let { binding ->
+            binding.centerText.visibility = View.VISIBLE
+            binding.centerText.text = error
+            binding.loanHistoryProgressBar.visibility = View.INVISIBLE
+            Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun drawContent(content: List<Loan>) {
-        binding.loansRecyclerView.visibility = View.VISIBLE
-        binding.centerText.visibility = View.INVISIBLE
-        binding.loanHistoryProgressBar.visibility = View.INVISIBLE
-        val adapter = LoanHistoryAdapter(content) {
-            viewModel.overviewLoan(it)
+        binding?.let { binding ->
+            binding.loansRecyclerView.visibility = View.VISIBLE
+            binding.centerText.visibility = View.INVISIBLE
+            binding.loanHistoryProgressBar.visibility = View.INVISIBLE
+            val adapter = LoanHistoryAdapter(content) {
+                viewModel.overviewLoan(it)
+            }
+            binding.loansRecyclerView.adapter = adapter
         }
-        binding.loansRecyclerView.adapter = adapter
     }
 }

@@ -20,22 +20,16 @@ class RegistrationViewModel(
     var login = String()
     var password = String()
 
-    private val _state: MutableSharedFlow<RegistrationUiState> =
-        MutableSharedFlow<RegistrationUiState>(
-            replay = 0
-        ).apply {
-            onSubscription {
-                emit(RegistrationUiState.State(login, password))
-            }
-        }
+    private val _errors = MutableSharedFlow<RegistrationUiState>()
+    private val _state = MutableSharedFlow<RegistrationUiState>(replay = 1)
     val state = _state.asSharedFlow()
 
     fun register() {
         viewModelScope.launch {
             if (login.isBlank())
-                _state.emit(RegistrationUiState.Error(RegistrationError.LOGIN_EMPTY))
+                _errors.emit(RegistrationUiState.Error(RegistrationError.LOGIN_EMPTY))
             if (password.isBlank())
-                _state.emit(RegistrationUiState.Error(RegistrationError.PASSWORD_EMPTY))
+                _errors.emit(RegistrationUiState.Error(RegistrationError.PASSWORD_EMPTY))
             if (password.isNotBlank() && login.isNotBlank()) {
                 try {
                     val auth = AuthBody(login, password)
@@ -45,7 +39,7 @@ class RegistrationViewModel(
                     _state.emit(RegistrationUiState.Successes)
                     registrationRouter.editProfile()
                 } catch (e: HttpException) {
-                    _state.emit(RegistrationUiState.Error(RegistrationError.USER_ALREADY_EXIST))
+                    _errors.emit(RegistrationUiState.Error(RegistrationError.USER_ALREADY_EXIST))
                 } catch (e: Exception) {
                     _state.emit(RegistrationUiState.Error(RegistrationError.NETWORK_ERROR))
                 }

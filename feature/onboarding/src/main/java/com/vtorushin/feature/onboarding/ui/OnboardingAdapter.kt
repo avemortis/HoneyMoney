@@ -5,13 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
-import com.vtorushin.feature.onboarding.databinding.FragmentOnBoardingItemBinding
+import com.vtorushin.feature.onboarding.databinding.FragmentOnboardingItemBinding
 import com.vtorushin.feature.onboarding.domain.PagerContentData
 
-class OnBoardingAdapter(private val items: List<PagerContentData>) :
+class OnboardingAdapter(private val items: List<PagerContentData>) :
     RecyclerView.Adapter<OnBoardingViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnBoardingViewHolder {
-        val binding = FragmentOnBoardingItemBinding.inflate(
+        val binding = FragmentOnboardingItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -26,7 +26,7 @@ class OnBoardingAdapter(private val items: List<PagerContentData>) :
     override fun getItemCount() = ITEMS_COUNT
 }
 
-class OnBoardingViewHolder(private val binding: FragmentOnBoardingItemBinding) :
+class OnBoardingViewHolder(private val binding: FragmentOnboardingItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(data: PagerContentData) {
         binding.itemImage.setImageResource(data.imageId)
