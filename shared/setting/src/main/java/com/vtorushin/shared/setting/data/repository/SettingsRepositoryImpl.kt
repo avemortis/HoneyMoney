@@ -64,10 +64,10 @@ class SettingsRepositoryImpl @Inject constructor(
     }
 
     companion object {
-        private const val PREF_KEY = "SharedPref Key"
-        private const val NAME_KEY = "Name Key"
-        private const val LAST_NAME_KEY = "Last Name Key"
-        private const val PHONE_KEY = "Phone Key"
-        private const val SECURITY_SETTING = "Security Setting"
+        const val PREF_KEY = "SharedPref Key"
+        const val NAME_KEY = "Name Key"
+        const val LAST_NAME_KEY = "Last Name Key"
+        const val PHONE_KEY = "Phone Key"
+        const val SECURITY_SETTING = "Security Setting"
     }
 }

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'de.mannodermaus.android-junit5'
 }
 
 android {
@@ -28,4 +29,9 @@ android {
     }
 }
 
-dependencies {}
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$versions.junitPlugin")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$versions.junitPlugin")
+    testImplementation("org.mockito:mockito-junit-jupiter:$versions.mockitoJupiter")
+}
