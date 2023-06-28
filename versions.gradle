@@ -9,12 +9,14 @@ ext.versions = [
         'dagger'            :   '2.45',
         'cicerone'          :   '7.1',
 
+
+        //Testing
         'junitPlugin'       :   '1.8.2.1',
         'junit'             :   '4.13.2',
         'mockito'           :   '4.1.0',
         'mockitoJupiter'    :   '5.3.0',
         'archCore'          :   '2.2.0',
         'testCoroutines'    :   '1.6.4',
-        'androidx_test'     :   '1.5.2',
+        //'androidx_test'     :   '1.5.2',
         'androidx_junit'    :   '1.1.5'
 ]

@@ -21,6 +21,12 @@ class LoanHistoryFragment : Fragment() {
     private val viewModel by lazy { component().viewModel() }
     private var binding: FragmentLoanHistoryBinding? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null)
+            viewModel.refresh()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
