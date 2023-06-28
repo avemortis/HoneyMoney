@@ -17,17 +17,18 @@ import com.vtorushin.component.tab.presentation.HostTabViewModel
 
 class HostTabFragment : Fragment() {
     private val viewModel by lazy { ViewModelProvider(this)[HostTabViewModel::class.java] }
+    private var binding: FragmentHostTabBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val binding = FragmentHostTabBinding.inflate(inflater, container, false)
+    ): View? {
+        binding = FragmentHostTabBinding.inflate(inflater, container, false)
         if (savedInstanceState == null)
-            initStartState(binding)
-        listenBottomNavigation(binding)
+            initStartState()
+        listenBottomNavigation()
         handleBackPressed()
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -38,18 +39,23 @@ class HostTabFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         callback.isEnabled = true
+        //binding?.bottomNavigation?.selectedItemId = viewModel.getActiveId()
     }
 
-    private fun initStartState(binding: FragmentHostTabBinding) {
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
+
+    private fun initStartState() {
         childFragmentManager.beginTransaction()
             .add(R.id.container, viewModel.first, FIRST_SCREEN)
             .add(R.id.container, viewModel.second, SECOND_SCREEN)
             .commit()
-        binding.bottomNavigation.selectedItemId = R.id.profile
     }
 
-    private fun listenBottomNavigation(binding: FragmentHostTabBinding) {
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
+    private fun listenBottomNavigation() {
+        binding?.bottomNavigation?.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.profile -> viewModel.first(childFragmentManager)
                 R.id.loan -> viewModel.second(childFragmentManager)

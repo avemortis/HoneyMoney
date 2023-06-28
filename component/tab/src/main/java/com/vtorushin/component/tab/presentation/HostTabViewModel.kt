@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModel
 import com.vtorushin.component.tab.FragmentKeys.FIRST_SCREEN
 import com.vtorushin.component.tab.FragmentKeys.SECOND_SCREEN
+import com.vtorushin.component.tab.R
 import com.vtorushin.component.tab.ui.ContentTabFragment
 
 class HostTabViewModel : ViewModel() {
@@ -28,6 +29,12 @@ class HostTabViewModel : ViewModel() {
     fun getActive(fm: FragmentManager) = when(unActive) {
         FIRST_SCREEN -> fm.findFragmentByTag(SECOND_SCREEN) as ContentTabFragment
         SECOND_SCREEN -> fm.findFragmentByTag(FIRST_SCREEN) as ContentTabFragment
+        else -> {throw IllegalStateException("Unknown fragment")}
+    }
+
+    fun getActiveId() = when(unActive) {
+        FIRST_SCREEN -> R.id.loan
+        SECOND_SCREEN -> R.id.profile
         else -> {throw IllegalStateException("Unknown fragment")}
     }
 }
