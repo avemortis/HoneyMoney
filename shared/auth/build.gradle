@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'de.mannodermaus.android-junit5'
 }
 
 android {
@@ -35,4 +36,14 @@ dependencies {
 
     implementation "com.google.dagger:dagger:${versions.dagger}"
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+
+    //Tests
+    implementation "androidx.test.ext:junit-ktx:$versions.androidx_junit"
+    testImplementation  "junit:junit:$versions.junit"
+    testImplementation  "org.junit.jupiter:junit-jupiter"
+    testImplementation  "org.junit.jupiter:junit-jupiter-api:$versions.junitPlugin"
+    testRuntimeOnly     "org.junit.jupiter:junit-jupiter-engine:$versions.junitPlugin"
+    testImplementation  "org.mockito:mockito-junit-jupiter:$versions.mockitoJupiter"
+    testImplementation  "org.mockito.kotlin:mockito-kotlin:$versions.mockito"
+    testImplementation  "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.testCoroutines"
 }

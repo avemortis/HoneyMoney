@@ -31,9 +31,9 @@ android {
 
 dependencies {
     implementation "javax.inject:javax.inject:1"
-    implementation "androidx.test.ext:junit-ktx:$versions.androidx_junit"
 
     //Tests
+    implementation "androidx.test.ext:junit-ktx:$versions.androidx_junit"
     testImplementation  "junit:junit:$versions.junit"
     testImplementation  "org.junit.jupiter:junit-jupiter"
     testImplementation  "org.junit.jupiter:junit-jupiter-api:$versions.junitPlugin"

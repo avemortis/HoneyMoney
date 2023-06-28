@@ -11,8 +11,7 @@ import javax.inject.Inject
 class LoanRemoteRepository @Inject constructor(
     private val api: LoanApi,
     private val auth: String
-) :
-    LoanRepository,
+) : LoanRepository,
     LoanIssueRepository,
     LoanConditionRepository {
     override suspend fun getLoanCondition() = api.getLoanCondition(auth).mapToDomain()
