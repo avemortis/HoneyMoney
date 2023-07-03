@@ -1,5 +1,5 @@
 [versions]
-androidGradlePlugin = "7.2.1"
+androidGradlePlugin = "7.4.2"
 kotlinPlugin = "1.8.21"
 junit5 = "1.8.2.1"
 [libraries]
